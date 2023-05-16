@@ -266,7 +266,7 @@ The most common method to implement responsive images is to build a list of alte
   )
 }}
 
-The notably lower use of `<picture>` is not surprising given that it is used most often for advanced responsive web design (RWD) layouts like [art direction](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#Art_direction).
+The notably lower use of `<picture>` is not surprising given that it is used most often for advanced responsive web design (RWD) layouts like [art direction](https://developer.mozilla.org/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#Art_direction).
 
 ### Use of sizes
 
@@ -329,7 +329,7 @@ The utility of `srcset` is usually dependent on the precision of the `sizes` med
 
 ### Client Hints
 
-<a hreflang="en" href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/client-hints">Client Hints</a> allow content creators to move the resizing of images to HTTP content negotiation. In this way, the HTML does not need additional `<img srcset>` to clutter the markup, and instead can depend on a server or <a hreflang="en" href="https://cloudinary.com/blog/client_hints_and_responsive_images_what_changed_in_chrome_67">image CDN to select an optimal image</a> for the context. This allows simplifying of HTML and enables origin servers to adapt overtime and disconnect the content and presentation layers.
+<a hreflang="en" href="https://web.dev/user-agent-client-hints/">Client Hints</a> allow content creators to move the resizing of images to HTTP content negotiation. In this way, the HTML does not need additional `<img srcset>` to clutter the markup, and instead can depend on a server or <a hreflang="en" href="https://cloudinary.com/blog/client_hints_and_responsive_images_what_changed_in_chrome_67">image CDN to select an optimal image</a> for the context. This allows simplifying of HTML and enables origin servers to adapt overtime and disconnect the content and presentation layers.
 
 To enable Client Hints, the web page must signal to the browser using either an extra HTTP header `Accept-CH: DPR, Width, Viewport-Width` _or_ by adding the HTML `<meta http-equiv="Accept-CH" content="DPR, Width, Viewport-Width">`. The convenience of one or the other technique depends on the team implementing and both are offered for convenience.
 
@@ -359,6 +359,7 @@ The network-related Client Hints, `downlink`, `rtt`, and `ect`, are only availab
 
 Improving web page performance can be partially characterized as a game of illusions; moving slow things out of band and out of site of the user. In this way, lazy loading images is one of these illusions where the image and media content is only loaded when the user scrolls on the page. This improves perceived performance, even on slow networks, and saves the user from downloading bytes that are not otherwise viewed.
 
+<!-- markdownlint-disable-next-line MD051 -->
 Earlier, in [Figure 4.5](#fig-5), we showed that the volume of image content at the 75th percentile is far more than could theoretically be shown in a single desktop or mobile viewport. The <a hreflang="en" href="https://developers.google.com/web/tools/lighthouse/audits/offscreen-images">offscreen images</a> Lighthouse audit confirms this suspicion. The median web page has 27% of image content significantly below the fold. This grows to 84% at the 90th percentile.
 
 {{ figure_markup(

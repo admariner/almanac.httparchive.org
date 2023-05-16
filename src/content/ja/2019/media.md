@@ -266,7 +266,7 @@ CSSピクセルと自然ピクセル量を見ると、中央値のウェブサ�
   )
 }}
 
-[アートディレクション](https://developer.mozilla.org/ja/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#Art_direction)のような高度なレスポンシブウェブデザイン（RWD）レイアウトによく使われていることを考えると、`<picture>`の使用率が著しく低いのは驚くべきことでありません。
+[アートディレクション](https://developer.mozilla.org/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#Art_direction)のような高度なレスポンシブウェブデザイン（RWD）レイアウトによく使われていることを考えると、`<picture>`の使用率が著しく低いのは驚くべきことでありません。
 
 ### サイズの使用
 
@@ -329,7 +329,7 @@ CSSピクセルと自然ピクセル量を見ると、中央値のウェブサ�
 
 ### クライアントヒント
 
-<a hreflang="en" href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/client-hints">クライアントヒント</a> は、コンテンツ制作者が画像のリサイズをHTTPコンテンツネゴシエーションに移すことを可能にします。この方法では、HTMLはマークアップを乱雑にするための追加の `<img srcset>` を必要とせず、代わりにサーバや <a hreflang="en" href="https://cloudinary.com/blog/client_hints_and_responsive_images_what_changed_in_chrome_67">最適な画像を選択するための画像CDN</a> に依存できます。これによりHTMLの簡素化が可能になり、オリジンサーバが時間の経過とともに適応し、コンテンツ層とプレゼンテーション層を切り離すことが可能になります。
+<a hreflang="en" href="https://web.dev/user-agent-client-hints/">クライアントヒント</a> は、コンテンツ制作者が画像のリサイズをHTTPコンテンツネゴシエーションに移すことを可能にします。この方法では、HTMLはマークアップを乱雑にするための追加の `<img srcset>` を必要とせず、代わりにサーバや <a hreflang="en" href="https://cloudinary.com/blog/client_hints_and_responsive_images_what_changed_in_chrome_67">最適な画像を選択するための画像CDN</a> に依存できます。これによりHTMLの簡素化が可能になり、オリジンサーバが時間の経過とともに適応し、コンテンツ層とプレゼンテーション層を切り離すことが可能になります。
 
 クライアントヒントを有効にするには、ウェブページでブラウザに追加のHTTPヘッダー`Accept-CH: DPR, Width, Viewport-Width`を使ってシグナルを送る必要があります。 _または_ HTML`<meta http-equiv="Accept-CH" content="DPR, Width, Viewport-Width">`を追加します。どちらか一方の手法の利便性は実装するチームに依存し、どちらも利便性のために提供されています。
 
@@ -359,6 +359,7 @@ HTMLでクライアントヒントを呼び出すために`<meta>`タグを使�
 
 ウェブページのパフォーマンスを改善することは、部分的にはイリュージョンのゲームとして特徴付けることができます。このように遅延読み込み画像は、ユーザーがページをスクロールしたときにのみ画像やメディアコンテンツが読み込まれる、これらのイリュージョンの1つです。これにより、遅いネットワークでも知覚パフォーマンスが向上し、ユーザーが他の方法で表示されていないバイトをダウンロードする手間が省けます。
 
+<!-- markdownlint-disable-next-line MD051 -->
 以前、[図4.5](#fig-5)で、75パーセンタイルの画像コンテンツの量が、理論的には単一のデスクトップやモバイルのビューポートで表示できる量をはるかに超えていることを示しました。<a hreflang="en" href="https://developers.google.com/web/tools/lighthouse/audits/offscreen-images">オフスクリーン画像</a>Lighthouseの監査は、この疑念を裏付けています。ウェブページの中央値では、折り目の下に27％の画像コンテンツがあります。これは、90パーセンタイルの割合で84％に増加しています。
 
 {{ figure_markup(

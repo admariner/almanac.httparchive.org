@@ -4,16 +4,16 @@ from werkzeug.http import HTTP_STATUS_CODES
 from .helpers import (
     get_view_args,
     chapter_lang_exists,
+    page_lang_exists,
     featured_chapters_exists,
     get_ebook_methodology,
     add_footnote_links,
     year_live,
     accentless_sort,
-    RegexConverter,
     get_versioned_filename,
 )
 from .config import TEMPLATES_DIR, STATIC_DIR
-from . import csp, feature_policy
+from . import csp, feature_policy, report_api
 import logging
 
 
@@ -53,6 +53,8 @@ def add_header(response):
         if response.status_code == 200 or response.status_code == 304:
             response.cache_control.public = True
             response.cache_control.max_age = 600
+    # Add Report API header
+    response.headers["Report-To"] = report_api.report_to
     return response
 
 
@@ -61,12 +63,10 @@ def add_header(response):
 # which is used by Google App Engine as it serves static files directly
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 10800
 
-# Convert URL routes with regex
-app.url_map.converters["regex"] = RegexConverter
-
 # Make these functions available in templates.
 app.jinja_env.globals["get_view_args"] = get_view_args
 app.jinja_env.globals["chapter_lang_exists"] = chapter_lang_exists
+app.jinja_env.globals["page_lang_exists"] = page_lang_exists
 app.jinja_env.globals["featured_chapters_exists"] = featured_chapters_exists
 app.jinja_env.globals["HTTP_STATUS_CODES"] = HTTP_STATUS_CODES
 app.jinja_env.globals["get_ebook_methodology"] = get_ebook_methodology
@@ -78,7 +78,7 @@ app.jinja_env.filters["accentless_sort"] = accentless_sort
 talisman = Talisman(
     app,
     content_security_policy=csp.csp,
-    content_security_policy_report_uri="https://httparchive.report-uri.com/r/d/csp/enforce'",
+    content_security_policy_report_uri="https://httparchive.report-uri.com/r/d/csp/enforce",
     content_security_policy_nonce_in=["script-src", "style-src"],
     feature_policy=feature_policy.feature_policy,
 )

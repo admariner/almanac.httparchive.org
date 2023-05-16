@@ -83,13 +83,20 @@
 {% block reviewed_and_analyzed_by_after %}{% endblock %}
 {% block analysis_and_editing_by_after %}{% endblock %}
 
+{% block date_published %}प्रकाशित होने की तिथि: {% endblock %}
+{% block date_updated %}अद्यतन तिथि: {% endblock %}
+
 {% block unedited %}[अप्रकाशित]{% endblock %}
 
 {% block author %}लेखक{% endblock %}
 {% block authors %}लेखकों{% endblock %}
 
+{% block reaction %}प्रतिक्रिया{% endblock %}
 {% block reactions %}प्रतिक्रियाओं{% endblock %}
+{% block reactionsTitle %}प्रतिक्रियाओं{% endblock %}
+{% block reactionsAlt %}{% endblock %}
 {% block source %}प्रतिक्रियाओं{% endblock %}
+{% block share %}शेयर करना{% endblock %}
 
 {% block like %}पसंद{% endblock %}
 {% block repost %}पोस्ट{% endblock %}
@@ -117,7 +124,7 @@
 {% block rss_feed %}RSS Feed{% endblock %}
 
 {% block featured_chapter %}विशेष अध्याय{% endblock %}
-{% block featured_chapter_last_year %}विशेष अध्याय<br/>{{ year|int -1 }} Web Almanac से {% endblock %}
+{% block featured_chapter_last_year %}विशेष अध्याय<br>{{ year|int -1 }} Web Almanac से {% endblock %}
 
 {# Check if read_chapter already defined in child template as macros can't be overridden #}
 {% if not read_chapter %}
@@ -188,7 +195,9 @@ Web Almanac वेब समुदाय की मेहनत से संभ
     "capabilities": "क्षमता",
     "jamstack": "Jamstack",
     "webassembly": "WebAssembly",
-    "structured-data": "संरचित डेटा"
+    "structured-data": "Structured Data",
+    "sustainability": "वहनीयता",
+    "interop": "इंटरोऑपरेबिलिटी"
   }
 %}
 {% if (year == "2019" or year == "2020") %}

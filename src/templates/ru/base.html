@@ -83,13 +83,20 @@
 {% block reviewed_and_analyzed_by_after %}{% endblock %}
 {% block analysis_and_editing_by_after %}{% endblock %}
 
+{% block date_published %}Дата публикации: {% endblock %}
+{% block date_updated %}Дата обновления: {% endblock %}
+
 {% block unedited %}[Неотредактированная версия]{% endblock %}
 
 {% block author %}Автор{% endblock %}
 {% block authors %}Авторы{% endblock %}
 
-{% block reactions %}Реакции{% endblock %}
+{% block reaction %}pеакция{% endblock %}
+{% block reactions %}pеакции{% endblock %}
+{% block reactionsTitle %}Реакции{% endblock %}
+{% block reactionsAlt %}pеакций{% endblock %}
 {% block source %}Посмотреть источник{% endblock %}
+{% block share %}Поделиться{% endblock %}
 
 {% block like %}лайк{% endblock %}
 {% block repost %}репост{% endblock %}
@@ -117,7 +124,7 @@
 {% block rss_feed %}RSS Feed{% endblock %}
 
 {% block featured_chapter %}Лучшая глава{% endblock %}
-{% block featured_chapter_last_year %}Лучшая глава<br/>в Web Almanac из {{ year|int -1 }} года{% endblock %}
+{% block featured_chapter_last_year %}Лучшая глава<br>в Web Almanac из {{ year|int -1 }} года{% endblock %}
 
 {# Check if read_chapter already defined in child template as macros can't be overridden #}
 {% if not read_chapter %}
@@ -188,7 +195,9 @@
     "capabilities": "Возможности",
     "jamstack": "Jamstack",
     "webassembly": "WebAssembly",
-    "structured-data": "Структурированные данные"
+    "structured-data": "Structured Data",
+    "sustainability": "устойчивость",
+    "interop": "Совместимость"
   }
 %}
 {% if (year == "2019" or year == "2020") %}

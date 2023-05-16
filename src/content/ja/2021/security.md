@@ -24,7 +24,7 @@ featured_stat_label_3: 悪意のあるボットに対抗するための仕組み
 
 現代はどんどんデジタル化が進んでいます。ビジネスだけでなく、私生活もデジタル化されています。私たちはオンラインで人と連絡を取り、メッセージを送り、友人と瞬間を共有し、ビジネスを行い日常生活を整理しています。同時に、この変化は、より多くの重要なデータがデジタル化され、私的、商業的にも処理されるようになったことを意味します。このような状況において、ユーザーデータの可用性、完全性、機密性を提供することでユーザーを保護することを目的とするサイバーセキュリティの重要性も増してきています。今日の技術に目を向けると、デジタルで提供されるソリューションを提供するために、ウェブリソースがますます利用されていることがわかります。それはまた、その普及により、私たちの現代生活とWebアプリケーションのセキュリティとの間に強い結びつきがあることを意味します。
 
-この章では、Web上のセキュリティの現状を分析し、Webコミュニティが自分たちの環境を守るために使っている（そして見逃している）手法の概要を説明します。具体的には、このレポートでは、一般的な実装、プロトコルのバージョン、暗号スイートなどの [トランスポートレイヤーセキュリティ](#transport-security) (HTTPS) に関するさまざまな指標を分析しています。また、[クッキー](#cookies)を保護するための技術についても概観しています。そして、[コンテンツ・インクルージョン](#content-inclusion)の話題と[攻撃を阻止する](#thwarting-attacks)ための方法（例：特定のセキュリティヘッダーの使用）についての包括的な分析が掲載されています。また、[セキュリティメカニズム](#drivers-of-security-meachnism-adoption)がどのように採用されているか（国別や特定の技術別など）についても見ています。また、Cryptojackingのような[ウェブ上の不正行為](#malpractices-on-the-web)について議論し、最後に[`security.txt` URL](#securitytxt) の使用について見ています。
+この章では、Web上のセキュリティの現状を分析し、Webコミュニティが自分たちの環境を守るために使っている（そして見逃している）手法の概要を説明します。具体的には、このレポートでは、一般的な実装、プロトコルのバージョン、暗号スイートなどの [トランスポートレイヤーセキュリティ](#トランスポートセキュリティ) (HTTPS) に関するさまざまな指標を分析しています。また、[クッキー](#クッキー)を保護するための技術についても概観しています。そして、[コンテンツ・インクルージョン](#コンテンツ搭載)の話題と[攻撃を阻止する](#攻撃を阻止する)ための方法（例：特定のセキュリティヘッダーの使用）についての包括的な分析が掲載されています。また、[セキュリティメカニズム](#セキュリティメカニズム採用のドライバー)がどのように採用されているか（国別や特定の技術別など）についても見ています。また、Cryptojackingのような[ウェブ上の不正行為](#ウェブ上での不正行為)について議論し、最後に[`security.txt` URL](#securitytxt) の使用について見ています。
 
 分析対象ページをデスクトップとモバイルの両方でクロールしていますが、多くのデータで同様の結果が得られているため、本章で紹介する統計情報は、とくに断りのない限り、モバイルページのセットを参照しています。データの収集方法の詳細については、[方法論](./methodology) ページを参照してください。
 
@@ -199,7 +199,7 @@ Cloudflareは、同様に顧客向けに無料の証明書を提供しており�
 
 ### HTTPストリクトトランスポートセキュリティ
 
-[_HTTPストリクトトランスポートセキュリティ_](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Strict-Transport-Security) (HSTS)は、ウェブサイトとの通信に安全なHTTPS接続を_常に_使用するようブラウザに指示する応答ヘッダーです。
+[_HTTPストリクトトランスポートセキュリティ_](https://developer.mozilla.org/docs/Web/HTTP/Headers/Strict-Transport-Security) (HSTS)は、ウェブサイトとの通信に安全なHTTPS接続を_常に_使用するようブラウザに指示する応答ヘッダーです。
 
 {{ figure_markup(
   caption="モバイルでHSTSヘッダーを持つリクエストの割合です。",
@@ -243,7 +243,7 @@ Cloudflareは、同様に顧客向けに無料の証明書を提供しており�
 
 HSTSヘッダーを持つサイトのうち、デスクトップで92.7%、モバイルでは93.4%が有効な`max-age`（つまり、値がゼロでなく、空でないこと）を持ち、ブラウザは何秒間だけHTTPSでウェブサイトにアクセスすべきか判断しています。
 
-モバイルで33.3%、デスクトップでは34.5%のリクエストレスポンスがHSTS設定に`includeSubdomain`を含んでいます。`preload` ディレクティブは [HSTS仕様の一部ではない](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Strict-Transport-Security#preloading_strict_transport_security) ため、レスポンス数が少なくなっています。また、最低でも `max-age` が31,536,000秒（または1年）で、さらに `includeSubdomain` ディレクティブも必要なため、このディレクティブは存在します。
+モバイルで33.3%、デスクトップでは34.5%のリクエストレスポンスがHSTS設定に`includeSubdomain`を含んでいます。`preload` ディレクティブは [HSTS仕様の一部ではない](https://developer.mozilla.org/docs/Web/HTTP/Headers/Strict-Transport-Security#preloading_strict_transport_security) ため、レスポンス数が少なくなっています。また、最低でも `max-age` が31,536,000秒（または1年）で、さらに `includeSubdomain` ディレクティブも必要なため、このディレクティブは存在します。
 
 {{ figure_markup(
   image="security-hsts-max-age-values-in-days.png",
@@ -277,7 +277,7 @@ Cookieを適切に保護しないと、攻撃者はセッションを乗っ取�
 
 ### `Secure`
 
-`Secure` 属性が設定されたクッキーは、安全なHTTPS接続でのみ送信され、<a hreflang="en" href="https://owasp.org/www-community/attacks/Manipulator-in-the-middle_attack">_Manipulator-in-the-middle_</a> 攻撃で盗まれないようにします。HSTSと同様に、TLSプロトコルが提供するセキュリティの強化にも貢献します。ファーストパーティのクッキーについては、デスクトップとモバイルの両方で、30%強のクッキーに `Secure` 属性が設定されています。しかし、デスクトップにおけるサードパーティ製クッキーのうち、`Secure`属性を持つものの割合が、[昨年](../2020/security#cookies)の35.2％から今年は67.0％に大きく増加していることがわかります。この増加は、後述する `SameSite=none` のクッキーに対して [`Secure` 属性が必須である](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie/SameSite#none) ことに起因すると思われます。
+`Secure` 属性が設定されたクッキーは、安全なHTTPS接続でのみ送信され、<a hreflang="en" href="https://owasp.org/www-community/attacks/Manipulator-in-the-middle_attack">_Manipulator-in-the-middle_</a> 攻撃で盗まれないようにします。HSTSと同様に、TLSプロトコルが提供するセキュリティの強化にも貢献します。ファーストパーティのクッキーについては、デスクトップとモバイルの両方で、30%強のクッキーに `Secure` 属性が設定されています。しかし、デスクトップにおけるサードパーティ製クッキーのうち、`Secure`属性を持つものの割合が、[昨年](../2020/security#クッキー)の35.2％から今年は67.0％に大きく増加していることがわかります。この増加は、後述する `SameSite=none` のクッキーに対して [`Secure` 属性が必須である](https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie/SameSite#none) ことに起因すると思われます。
 
 ### `HttpOnly`
 
@@ -351,7 +351,7 @@ Cookieを適切に保護しないと、攻撃者はセッションを乗っ取�
 
 ### コンテンツセキュリティポリシー
 
-[_コンテンツセキュリティポリシー_](https://developer.mozilla.org/ja/docs/Web/HTTP/CSP) (CSP) は、さまざまなコンテンツの読み込みを許可するオリジンを制限することにより、クロスサイトスクリプティングやデータインジェクション攻撃を緩和するために使用される主要な方法です。ウェブサイトには、さまざまな種類のコンテンツのソースを指定するために使用できる数多くのディレクティブがあります。たとえば、`script-src` はスクリプトを読み込むことができるオリジンやドメインを指定するために使用されます。また、インラインスクリプトと `eval()` 関数が許可されているかどうかを定義するための値も持っています。
+[_コンテンツセキュリティポリシー_](https://developer.mozilla.org/docs/Web/HTTP/CSP) (CSP) は、さまざまなコンテンツの読み込みを許可するオリジンを制限することにより、クロスサイトスクリプティングやデータインジェクション攻撃を緩和するために使用される主要な方法です。ウェブサイトには、さまざまな種類のコンテンツのソースを指定するために使用できる数多くのディレクティブがあります。たとえば、`script-src` はスクリプトを読み込むことができるオリジンやドメインを指定するために使用されます。また、インラインスクリプトと `eval()` 関数が許可されているかどうかを定義するための値も持っています。
 
 {{ figure_markup(
   image="security-csp-directives-usage.png",
@@ -371,7 +371,7 @@ Cookieを適切に保護しないと、攻撃者はセッションを乗っ取�
 
 厳格なCSPは攻撃に対する強力な防御となりますが、ポリシーの定義が正しくない場合、望ましくない効果をもたらし有効なコンテンツが、ロードされなくなることがあります。異なるライブラリやAPIがさらにコンテンツを読み込むと、これはさらに難しくなります。
 
-<a hreflang="en" href="https://web.dev/csp-xss/">Lighthouse</a> は最近、CSPにそのようなディレクティブがない場合に重大度警告のフラグを立て、XSS攻撃を防ぐためにより厳しいCSPを採用するよう奨励するようになりました。CSPがXSS攻撃の阻止にどのように役立つかは、この章の[攻撃の阻止](#CSPによるXSS攻撃の阻止) のセクションで詳しく説明します。
+<a hreflang="en" href="https://web.dev/csp-xss/">Lighthouse</a> は最近、CSPにそのようなディレクティブがない場合に重大度警告のフラグを立て、XSS攻撃を防ぐためにより厳しいCSPを採用するよう奨励するようになりました。CSPがXSS攻撃の阻止にどのように役立つかは、この章の[攻撃の阻止](#cspによるxss攻撃の阻止) のセクションで詳しく説明します。
 
 ウェブ開発者がCSPポリシーの正しさを評価できるように、非強化の代替案もあります。これは、`Content-Security-Policy-Report-Only`応答ヘッダーでポリシーを定義することによって有効になります。このヘッダーの普及率はまだかなり低く、モバイルでは0.9%です。しかし、ほとんどの場合、このヘッダーはテスト段階で追加され、後に強制CSPへ置き換えられるので使用率の低さは予想外ではありません。
 
@@ -411,53 +411,53 @@ CSPヘッダーの長さの中央値は75バイトと、かなり短い状態が
     <tbody>
       <tr>
         <td>https://www.google-analytics.com</td>
-        <td class="numeric">1.4%</td>
-        <td class="numeric">1.3%</td>
+        <td class="numeric">0.29%</td>
+        <td class="numeric">0.22%</td>
       </tr>
       <tr>
         <td>https://www.googletagmanager.com</td>
-        <td class="numeric">1.2%</td>
-        <td class="numeric">1.2%</td>
+        <td class="numeric">0.26%</td>
+        <td class="numeric">0.22%</td>
       </tr>
       <tr>
         <td>https://fonts.googleapis.com</td>
-        <td class="numeric">1.0%</td>
-        <td class="numeric">1.0%</td>
+        <td class="numeric">0.22%</td>
+        <td class="numeric">0.16%</td>
       </tr>
       <tr>
         <td>https://fonts.gstatic.com</td>
-        <td class="numeric">0.9%</td>
-        <td class="numeric">0.9%</td>
+        <td class="numeric">0.20%</td>
+        <td class="numeric">0.15%</td>
       </tr>
       <tr>
         <td>https://www.google.com</td>
-        <td class="numeric">0.9%</td>
-        <td class="numeric">0.9%</td>
+        <td class="numeric">0.19%</td>
+        <td class="numeric">0.14%</td>
       </tr>
       <tr>
         <td>https://www.youtube.com</td>
-        <td class="numeric">0.9%</td>
-        <td class="numeric">0.8%</td>
+        <td class="numeric">0.19%</td>
+        <td class="numeric">0.13%</td>
       </tr>
       <tr>
         <td>https://connect.facebook.net</td>
-        <td class="numeric">0.7%</td>
-        <td class="numeric">0.7%</td>
+        <td class="numeric">0.16%</td>
+        <td class="numeric">0.11%</td>
       </tr>
       <tr>
         <td>https://stats.g.doubleclick.net</td>
-        <td class="numeric">0.7%</td>
-        <td class="numeric">0.7%</td>
+        <td class="numeric">0.15%</td>
+        <td class="numeric">0.11%</td>
       </tr>
       <tr>
         <td>https://www.gstatic.com</td>
-        <td class="numeric">0.7%</td>
-        <td class="numeric">0.6%</td>
+        <td class="numeric">0.14%</td>
+        <td class="numeric">0.11%</td>
       </tr>
       <tr>
         <td>https://cdnjs.cloudflare.com</td>
-        <td class="numeric">0.6%</td>
-        <td class="numeric">0.6%</td>
+        <td class="numeric">0.12%</td>
+        <td class="numeric">0.10%</td>
       </tr>
     </tbody>
   </table>
@@ -685,7 +685,7 @@ iframeの`sandbox`属性は、コンテンツに制限をかけるため、埋�
 
 このように、セキュリティ機構の採用率が上昇し続けていることは注目に値しますが、まだまだ改善の余地は残されています。もっとも広く利用されているセキュリティメカニズムは、依然として `X-Content-Type-Options` ヘッダーであり、モバイルでクロールしたウェブサイトの36.6% でMIMEスニッフィング攻撃から保護するために利用されています。このヘッダーに続くのは、`X-Frame-Options`ヘッダーで、全サイトの29.4%で有効になっています。興味深いことに、CSPのより柔軟な`frame-ancestors`ディレクティブを使用しているウェブサイトは、わずか5.6%に過ぎません。
 
-もう1つの興味深いのは、[`X-XSS-Protection`](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/X-XSS-Protection)ヘッダーの進化です。この機能は、レガシーブラウザのXSSフィルターを制御するために使用されます。<a hreflang="en" href="https://blogs.windows.com/windows-insider/2018/07/25/announcing-windows-10-insider-preview-build-17723-and-build-18204/">Edge</a>と<a hreflang="en" href="https://www.chromium.org/developers/design-documents/xss-auditor">Chrome</a>は意図しない新たな脆弱性をもたらす恐れがあるとして、XSSフィルターをそれぞれ2018年7月、2019年8月に引退させたそうです。しかし、`X-XSS-Protection`ヘッダーは昨年より8.5%も多いことがわかりました。
+もう1つの興味深いのは、[`X-XSS-Protection`](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-XSS-Protection)ヘッダーの進化です。この機能は、レガシーブラウザのXSSフィルターを制御するために使用されます。<a hreflang="en" href="https://blogs.windows.com/windows-insider/2018/07/25/announcing-windows-10-insider-preview-build-17723-and-build-18204/">Edge</a>と<a hreflang="en" href="https://www.chromium.org/developers/design-documents/xss-auditor">Chrome</a>は意図しない新たな脆弱性をもたらす恐れがあるとして、XSSフィルターをそれぞれ2018年7月、2019年8月に引退させたそうです。しかし、`X-XSS-Protection`ヘッダーは昨年より8.5%も多いことがわかりました。
 
 ### `<meta>` 要素で有効な機能
 
@@ -706,7 +706,7 @@ iframeの`sandbox`属性は、コンテンツに制限をかけるため、埋�
 
 CSPは、クリックジャック攻撃、混合コンテンツの取り込みの防止、コンテンツを取り込む信頼できるソースの決定（[上](#コンテンツセキュリティポリシー)で述べたとおり）など、多数のものから守るために使用できます。
 
-さらに、XSS攻撃から身を守るために必要不可欠な仕組みです。たとえば、制限的な `script-src` ディレクティブを設定することで、ウェブ開発者はアプリケーションのJavaScriptコードだけが実行されるようにできます（攻撃者のコードは実行されません）。さらに、DOMベースのクロスサイトスクリプティングを防御するために、<a hreflang="ja" href="https://web.dev/i18n/ja/trusted-types/">_信頼できるタイプ_</a> を使うことができます。これは、CSPの[`require-trusted-types-for`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/require-trusted-types-for) ディレクティブを使って有効にすることが可能です。
+さらに、XSS攻撃から身を守るために必要不可欠な仕組みです。たとえば、制限的な `script-src` ディレクティブを設定することで、ウェブ開発者はアプリケーションのJavaScriptコードだけが実行されるようにできます（攻撃者のコードは実行されません）。さらに、DOMベースのクロスサイトスクリプティングを防御するために、<a hreflang="ja" href="https://web.dev/i18n/ja/trusted-types/">_信頼できるタイプ_</a> を使うことができます。これは、CSPの[`require-trusted-types-for`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/require-trusted-types-for) ディレクティブを使って有効にすることが可能です。
 
 <figure>
   <table>
@@ -751,13 +751,13 @@ CSPの採用は全体的に緩やかな増加（17％）ですが、それ以上
 
 Web開発者が[Spectre](https://ja.wikipedia.org/wiki/Spectre)のような攻撃などのマイクロアーキテクチャ攻撃や、一般に <a hreflang="en" href="https://xsleaks.dev">XS-Leaks</a> と呼ばれる攻撃からWebサイトを防御できるように、さまざまな新しいセキュリティ機能を導入しています。これらの攻撃の多くがここ数年で発見されたものであることを考えると、それらに対処するためのメカニズムも明らかにごく最近のものであり、これが比較的低い普及率の理由かもしれません。とはいえ、[昨年](../2020/security#defending-against-xs-leaks-with-cross-origin-policies)と比較すると、クロスオリジンポリシーの採用が大幅に増えています。
 
-リソースをどのように含めるか（クロスオリジン、同一サイト、同一オリジン）をブラウザへ示すために使用される[`Cross-Origin-Resource-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cross-Origin_Resource_Policy_(CORP)) は、 [昨年](../2020/security#defending-against-xs-leaks-with-cross-origin-policies)1,712サイトから106,443サイト (1.5%)で存在することがわかりました。この理由としてもっとも考えられるのは、<a hreflang="ja" href="https://web.dev/i18n/ja/cross-origin-isolation-guide/">クロスオリジンの分離</a>が `SharedArrayBuffer` やハイレゾタイマーなどの機能を使うために必要で、それにはサイトの [`Cross-Origin-Embedder-Policy`](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy)を`require-corp`に設定する必要があるからだと思われます。要するに、これらの機能を使いたいサイトのために、ロードされたすべてのサブリソースに `Cross-Origin-Resource-Policy` レスポンスヘッダーを設定することを要求しているのです。
+リソースをどのように含めるか（クロスオリジン、同一サイト、同一オリジン）をブラウザへ示すために使用される[`Cross-Origin-Resource-Policy`](https://developer.mozilla.org/docs/Web/HTTP/Cross-Origin_Resource_Policy_(CORP)) は、 [昨年](../2020/security#defending-against-xs-leaks-with-cross-origin-policies)1,712サイトから106,443サイト (1.5%)で存在することがわかりました。この理由としてもっとも考えられるのは、<a hreflang="ja" href="https://web.dev/i18n/ja/cross-origin-isolation-guide/">クロスオリジンの分離</a>が `SharedArrayBuffer` やハイレゾタイマーなどの機能を使うために必要で、それにはサイトの [`Cross-Origin-Embedder-Policy`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy)を`require-corp`に設定する必要があるからだと思われます。要するに、これらの機能を使いたいサイトのために、ロードされたすべてのサブリソースに `Cross-Origin-Resource-Policy` レスポンスヘッダーを設定することを要求しているのです。
 
 その結果、<a hreflang="en" href="https://github.com/cdnjs/cdnjs/issues/13782">several</a> <a hreflang="en" href="https://github.com/jsdelivr/bootstrapcdn/issues/1495">CDN</a> は現在、ヘッダーの値を `cross-origin` に設定します（CDNのリソースは通常クロスサイトのコンテキストに含まれるべきものだからです）。CORPヘッダーの値を`cross-origin`に設定しているサイトは96.8%であるのに対し、`same-site`に設定しているサイトは2.9%、より限定的な`same-origin`を使用しているサイトは0.3%であり、これは実際にそうであるということがわかります。
 
 この変化に伴い、`Cross-Origin-Embedder-Policy`の採用が着実に増えているのは当然のことです。2021年には、911サイトがこのヘッダーを有効にし、昨年の6サイトを大幅に上回りました。来年、これがさらにどのように発展していくのか、興味深いところです。
 
-最後に、もう1つのXS-Leak対策ヘッダーである[`Cross-Origin-Opener-Policy`](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy)も昨年と比較して大幅に増加しています。現在、このセキュリティ機構を有効にしているサイトは15,727件で、特定のXS-Leak攻撃から保護されているサイトが31件しかなかった昨年と比較すると、大幅に増加していることがわかりました。
+最後に、もう1つのXS-Leak対策ヘッダーである[`Cross-Origin-Opener-Policy`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy)も昨年と比較して大幅に増加しています。現在、このセキュリティ機構を有効にしているサイトは15,727件で、特定のXS-Leak攻撃から保護されているサイトが31件しかなかった昨年と比較すると、大幅に増加していることがわかりました。
 
 ### ウェブ暗号化API
 
@@ -974,7 +974,7 @@ CSPや `X-Frame-Options` などの特定のセキュリティ機能の採用状�
       <tr>
         <td>ブロガー（ブログ）</td>
         <td>
-          X-Content-Type-Options (99.6%),<br/>
+          X-Content-Type-Options (99.6%),<br>
           X-XSS-Protection (99.6%)
         </td>
       </tr>
@@ -986,7 +986,7 @@ CSPや `X-Frame-Options` などの特定のセキュリティ機能の採用状�
         <td>Drupal (CMS)</td>
         <td>
           X-Content-Type-Options (77.9%),
-          <br />
+          <br>
           X-Frame-Options (83.1%)
         </td>
       </tr>
@@ -997,35 +997,35 @@ CSPや `X-Frame-Options` などの特定のセキュリティ機能の採用状�
       <tr>
         <td>Shopify (E-commerce)</td>
         <td>
-          Content-Security-Policy (96.4%),<br/>
-          Expect-CT (95.5%),<br/>
-          Report-To (95.5%),<br/>
-          Strict-Transport-Security (98.2%),<br/>
-          X-Content-Type-Options (98.3%),<br/>
-          X-Frame-Options (95.2%),<br/>
+          Content-Security-Policy (96.4%),<br>
+          Expect-CT (95.5%),<br>
+          Report-To (95.5%),<br>
+          Strict-Transport-Security (98.2%),<br>
+          X-Content-Type-Options (98.3%),<br>
+          X-Frame-Options (95.2%),<br>
           X-XSS-Protection (98.2%)
         </td>
       </tr>
       <tr>
         <td>Squarespace (CMS)</td>
         <td>
-          Strict-Transport-Security (87.9%),<br/>
+          Strict-Transport-Security (87.9%),<br>
           X-Content-Type-Options (98.7%)
         </td>
       </tr>
       <tr>
         <td>Sucuri (CDN)</td>
         <td>
-          Content-Security-Policy (84.0%),<br/>
-          X-Content-Type-Options (88.8%),<br/>
-          X-Frame-Options (88.8%),<br/>
+          Content-Security-Policy (84.0%),<br>
+          X-Content-Type-Options (88.8%),<br>
+          X-Frame-Options (88.8%),<br>
           X-XSS-Protection (88.7%)
         </td>
       </tr>
       <tr>
         <td>Wix (Blogs)</td>
         <td>
-          Strict-Transport-Security (98.8%),<br/>
+          Strict-Transport-Security (98.8%),<br>
           X-Content-Type-Options (99.4%)
         </td>
       </tr>

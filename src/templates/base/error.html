@@ -53,9 +53,9 @@
     <div class="escape-hatch">
       <a href="{{ url_for('home', lang=lang, year=year) }}" class="btn">{{ self.home() }}</a>
     </div>
-    <img class="methodology-characters" src="/static/images/methodology-characters.png" alt="" />
+    <img class="methodology-characters" src="/static/images/methodology-characters.png" alt="">
   </main>
-  <script nonce="{{ csp_nonce() }}">
+  <script defer nonce="{{ csp_nonce() }}">
     gtag('event', '{{ HTTP_STATUS_CODES[error.code] }}', { 'event_category': 'error', 'event_label': '{{ request.path }}', 'value': 1 });
   </script>
 {% endblock %}

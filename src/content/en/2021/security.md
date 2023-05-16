@@ -24,7 +24,7 @@ featured_stat_label_3: Websites on desktop that use a mechanism to fight malicio
 
 We are becoming more and more digital today. We are not only digitizing our business but also our private life. We contact people online, send messages, share moments with friends, do our business, and organize our daily routine. At the same time, this shift means that more and more critical data is being digitized and processed privately and commercially. In this context, cybersecurity is also becoming more and more important as its goal is to safeguard users by offering availability, integrity and confidentiality of user data. When we look at today's technology, we see that web resources are increasingly used to provide digitally delivered solutions. It also means that there is a strong link between our modern life and the security of web applications due to their widespread use.
 
-This chapter analyzes the current state of security on the web and gives an overview of methods that the web community uses (and misses) to protect their environment. More specifically, in this report, we analyze different metrics on [Transport Layer Security](#transport-security) (HTTPS), such as general implementation, protocol versions, and cipher suites. We also give an overview of the techniques used to protect [cookies](#cookies). You will then find a comprehensive analysis on the topic of [content inclusion](#content-inclusion) and methods for [thwarting attacks](#thwarting-attacks) (e.g., use of specific security headers). We also look at how the [security mechanisms](#drivers-of-security-meachnism-adoption) are adopted (e.g., by country or specific technology). We also discuss [malpractices on the web](#malpractices-on-the-web), such as Cryptojacking and, finally we look at usage of [`security.txt` URLs](#securitytxt).
+This chapter analyzes the current state of security on the web and gives an overview of methods that the web community uses (and misses) to protect their environment. More specifically, in this report, we analyze different metrics on [Transport Layer Security](#transport-security) (HTTPS), such as general implementation, protocol versions, and cipher suites. We also give an overview of the techniques used to protect [cookies](#cookies). You will then find a comprehensive analysis on the topic of [content inclusion](#content-inclusion) and methods for [thwarting attacks](#thwarting-attacks) (e.g., use of specific security headers). We also look at how the [security mechanisms](#drivers-of-security-mechanism-adoption) are adopted (e.g., by country or specific technology). We also discuss [malpractices on the web](#malpractices-on-the-web), such as Cryptojacking and, finally we look at usage of [`security.txt` URLs](#securitytxt).
 
 We crawl the analyzed pages in both desktop and mobile mode, but for a lot of the data they give similar results, so unless otherwise noted, stats presented in this chapter refer to the set of mobile pages. For more information on how the data has been collected, refer to the [Methodology](./methodology) page.
 
@@ -199,7 +199,7 @@ Cloudflare continues to be in second position with its similarly free certificat
 
 ### HTTP Strict Transport Security
 
-[_HTTP Strict Transport Security_](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) (HSTS) is a response header that tells the browser that it should _always_ use secure HTTPS connections to communicate with the website.
+[_HTTP Strict Transport Security_](https://developer.mozilla.org/docs/Web/HTTP/Headers/Strict-Transport-Security) (HSTS) is a response header that tells the browser that it should _always_ use secure HTTPS connections to communicate with the website.
 
 {{ figure_markup(
   caption="The percentage of requests that have HSTS header on mobile.",
@@ -243,7 +243,7 @@ The `Strict-Transport-Security` header helps convert a `http://` URL to a `https
 
 Out of the sites with HSTS header, 92.7% in desktop and 93.4% in mobile have a valid `max-age` (that is, the value is non-zero and non-empty) which determines how many seconds the browser should only visit the website over HTTPS.
 
-33.3% of request responses for mobile, and 34.5% for desktop include `includeSubdomain` in the HSTS settings.  The number of responses with the `preload` directive is lower because it is [not part of the HSTS specification](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security#preloading_strict_transport_security) and needs a minimum `max-age` of 31,536,000 seconds (or 1 year) and also the `includeSubdomain` directive to be present.
+33.3% of request responses for mobile, and 34.5% for desktop include `includeSubdomain` in the HSTS settings.  The number of responses with the `preload` directive is lower because it is [not part of the HSTS specification](https://developer.mozilla.org/docs/Web/HTTP/Headers/Strict-Transport-Security#preloading_strict_transport_security) and needs a minimum `max-age` of 31,536,000 seconds (or 1 year) and also the `includeSubdomain` directive to be present.
 
 {{ figure_markup(
   image="security-hsts-max-age-values-in-days.png",
@@ -277,7 +277,7 @@ You can ensure that cookies are sent securely and aren't accessed by unintended 
 
 ### `Secure`
 
-Cookies that have the `Secure` attribute set will only be sent over a secure HTTPS connection, preventing them from being stolen in a <a hreflang="en" href="https://owasp.org/www-community/attacks/Manipulator-in-the-middle_attack">_Manipulator-in-the-middle_</a> attack. Similar to HSTS, this also helps enhance the security provided by TLS protocols. For first-party cookies, just over 30% of the cookies in both desktop and mobile have the `Secure` attribute set. However, we do see a significant increase in the percentage of third-party cookies in desktop having the `Secure` attribute from 35.2% [last year](../2020/security#cookies) to 67.0% this year. This increase is likely due to the [`Secure` attribute being a requirement](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite#none) for `SameSite=none` cookies, that we will discuss below.
+Cookies that have the `Secure` attribute set will only be sent over a secure HTTPS connection, preventing them from being stolen in a <a hreflang="en" href="https://owasp.org/www-community/attacks/Manipulator-in-the-middle_attack">_Manipulator-in-the-middle_</a> attack. Similar to HSTS, this also helps enhance the security provided by TLS protocols. For first-party cookies, just over 30% of the cookies in both desktop and mobile have the `Secure` attribute set. However, we do see a significant increase in the percentage of third-party cookies in desktop having the `Secure` attribute from 35.2% [last year](../2020/security#cookies) to 67.0% this year. This increase is likely due to the [`Secure` attribute being a requirement](https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie/SameSite#none) for `SameSite=none` cookies, that we will discuss below.
 
 ### `HttpOnly`
 
@@ -351,7 +351,7 @@ Most websites have quite a lot of media and CSS or JavaScript libraries that mor
 
 ### Content Security Policy
 
-[_Content Security Policy_](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) (CSP) is the predominant method used to mitigate cross-site scripting and data injection attacks by restricting the origins allowed to load various content. There are numerous directives that can be used by the website to specify sources for different kinds of content. For instance, `script-src` is used to specify origins or domains from which scripts can be loaded. It also has other values to define if inline scripts and `eval()` functions are allowed.
+[_Content Security Policy_](https://developer.mozilla.org/docs/Web/HTTP/CSP) (CSP) is the predominant method used to mitigate cross-site scripting and data injection attacks by restricting the origins allowed to load various content. There are numerous directives that can be used by the website to specify sources for different kinds of content. For instance, `script-src` is used to specify origins or domains from which scripts can be loaded. It also has other values to define if inline scripts and `eval()` functions are allowed.
 
 {{ figure_markup(
   image="security-csp-directives-usage.png",
@@ -411,53 +411,53 @@ On the other side of the spectrum, the longest CSP header is almost twice as lon
     <tbody>
       <tr>
         <td>https://www.google-analytics.com</td>
-        <td class="numeric">1.4%</td>
-        <td class="numeric">1.3%</td>
+        <td class="numeric">0.29%</td>
+        <td class="numeric">0.22%</td>
       </tr>
       <tr>
         <td>https://www.googletagmanager.com</td>
-        <td class="numeric">1.2%</td>
-        <td class="numeric">1.2%</td>
+        <td class="numeric">0.26%</td>
+        <td class="numeric">0.22%</td>
       </tr>
       <tr>
         <td>https://fonts.googleapis.com</td>
-        <td class="numeric">1.0%</td>
-        <td class="numeric">1.0%</td>
+        <td class="numeric">0.22%</td>
+        <td class="numeric">0.16%</td>
       </tr>
       <tr>
         <td>https://fonts.gstatic.com</td>
-        <td class="numeric">0.9%</td>
-        <td class="numeric">0.9%</td>
+        <td class="numeric">0.20%</td>
+        <td class="numeric">0.15%</td>
       </tr>
       <tr>
         <td>https://www.google.com</td>
-        <td class="numeric">0.9%</td>
-        <td class="numeric">0.9%</td>
+        <td class="numeric">0.19%</td>
+        <td class="numeric">0.14%</td>
       </tr>
       <tr>
         <td>https://www.youtube.com</td>
-        <td class="numeric">0.9%</td>
-        <td class="numeric">0.8%</td>
+        <td class="numeric">0.19%</td>
+        <td class="numeric">0.13%</td>
       </tr>
       <tr>
         <td>https://connect.facebook.net</td>
-        <td class="numeric">0.7%</td>
-        <td class="numeric">0.7%</td>
+        <td class="numeric">0.16%</td>
+        <td class="numeric">0.11%</td>
       </tr>
       <tr>
         <td>https://stats.g.doubleclick.net</td>
-        <td class="numeric">0.7%</td>
-        <td class="numeric">0.7%</td>
+        <td class="numeric">0.15%</td>
+        <td class="numeric">0.11%</td>
       </tr>
       <tr>
         <td>https://www.gstatic.com</td>
-        <td class="numeric">0.7%</td>
-        <td class="numeric">0.6%</td>
+        <td class="numeric">0.14%</td>
+        <td class="numeric">0.11%</td>
       </tr>
       <tr>
         <td>https://cdnjs.cloudflare.com</td>
-        <td class="numeric">0.6%</td>
-        <td class="numeric">0.6%</td>
+        <td class="numeric">0.12%</td>
+        <td class="numeric">0.10%</td>
       </tr>
     </tbody>
   </table>
@@ -685,7 +685,7 @@ Perhaps the most promising and uplifting finding of this chapter is that the gen
 
 Although this continued increase in the adoption rate of security mechanisms is certainly outstanding, there still remains quite some room for improvement. The most widely used security mechanism is still the `X-Content-Type-Options` header, which is used on 36.6% of the websites we crawled on mobile, to protect against MIME-sniffing attacks. This header is followed by the `X-Frame-Options` header, which is enabled on 29.4% of all sites. Interestingly, only 5.6% of websites use the more flexible `frame-ancestors` directive of CSP.
 
-Another interesting evolution is that of the [`X-XSS-Protection`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection) header. The feature is used to control the XSS filter of legacy browsers: <a hreflang="en" href="https://blogs.windows.com/windows-insider/2018/07/25/announcing-windows-10-insider-preview-build-17723-and-build-18204/">Edge</a> and <a hreflang="en" href="https://www.chromium.org/developers/design-documents/xss-auditor">Chrome</a> retired their XSS filter in July 2018 and August 2019 respectively as it could introduce new unintended vulnerabilities. Yet, we found that the `X-XSS-Protection` header was 8.5% more prevalent than last year.
+Another interesting evolution is that of the [`X-XSS-Protection`](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-XSS-Protection) header. The feature is used to control the XSS filter of legacy browsers: <a hreflang="en" href="https://blogs.windows.com/windows-insider/2018/07/25/announcing-windows-10-insider-preview-build-17723-and-build-18204/">Edge</a> and <a hreflang="en" href="https://www.chromium.org/developers/design-documents/xss-auditor">Chrome</a> retired their XSS filter in July 2018 and August 2019 respectively as it could introduce new unintended vulnerabilities. Yet, we found that the `X-XSS-Protection` header was 8.5% more prevalent than last year.
 
 ### Features enabled in `<meta>` element
 
@@ -706,7 +706,7 @@ When any of the other security mechanisms are set via the `<meta>` tag, the brow
 
 CSP can be used to protect against a multitude of things: clickjacking attacks, preventing mixed-content inclusion and determining the trusted sources from which content may be included (as discussed [above](#content-security-policy)).
 
-Additionally, it is an essential mechanism to defend against XSS attacks. For instance, by setting a restrictive `script-src` directive, a web developer can ensure that only the application's JavaScript code is executed (and not the attacker's). Moreover, to defend against DOM-based cross-site scripting, it is possible to use <a hreflang="en" href="https://web.dev/trusted-types/">_Trusted Types_</a>, which can be enabled by using CSP's [`require-trusted-types-for`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/require-trusted-types-for) directive.
+Additionally, it is an essential mechanism to defend against XSS attacks. For instance, by setting a restrictive `script-src` directive, a web developer can ensure that only the application's JavaScript code is executed (and not the attacker's). Moreover, to defend against DOM-based cross-site scripting, it is possible to use <a hreflang="en" href="https://web.dev/trusted-types/">_Trusted Types_</a>, which can be enabled by using CSP's [`require-trusted-types-for`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/require-trusted-types-for) directive.
 
 <figure>
   <table>
@@ -751,13 +751,13 @@ On the other hand, we find that the usage of the troubling directives `unsafe-in
 
 Various new security features have been introduced to allow web developers to defend their websites against micro-architectural attacks, such as [Spectre](https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)), and other attacks that are typically referred to as <a hreflang="en" href="https://xsleaks.dev">XS-Leaks</a>. Given that many of these attacks were only discovered in the last few years, the mechanisms used to tackle them obviously are very recent as well, which might explain the relatively low adoption rate. Nevertheless, compared to [last year](../2020/security#defending-against-xs-leaks-with-cross-origin-policies), the cross-origin policies have significantly increased in adoption.
 
-The [`Cross-Origin-Resource-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cross-Origin_Resource_Policy_(CORP)), which is used to indicate to the browser how a resource should be included (cross-origin, same-site or same-origin), is now present on 106,443 (1.5%) sites, up from 1,712 sites [last year](../2020/security#defending-against-xs-leaks-with-cross-origin-policies). The most likely explanation for this is that <a hreflang="en" href="https://web.dev/cross-origin-isolation-guide/">cross-origin isolation</a> is a requirement for using features such as `SharedArrayBuffer` and high-resolution timers and that requires setting the site's [`Cross-Origin-Embedder-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy) to `require-corp`. In essence, this requires all loaded subresources to set the `Cross-Origin-Resource-Policy` response header for those sites wishing to use those features.
+The [`Cross-Origin-Resource-Policy`](https://developer.mozilla.org/docs/Web/HTTP/Cross-Origin_Resource_Policy_(CORP)), which is used to indicate to the browser how a resource should be included (cross-origin, same-site or same-origin), is now present on 106,443 (1.5%) sites, up from 1,712 sites [last year](../2020/security#defending-against-xs-leaks-with-cross-origin-policies). The most likely explanation for this is that <a hreflang="en" href="https://web.dev/cross-origin-isolation-guide/">cross-origin isolation</a> is a requirement for using features such as `SharedArrayBuffer` and high-resolution timers and that requires setting the site's [`Cross-Origin-Embedder-Policy`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy) to `require-corp`. In essence, this requires all loaded subresources to set the `Cross-Origin-Resource-Policy` response header for those sites wishing to use those features.
 
 Consequently, <a hreflang="en" href="https://github.com/cdnjs/cdnjs/issues/13782">several</a> <a hreflang="en" href="https://github.com/jsdelivr/bootstrapcdn/issues/1495">CDNs</a> now set the header with a value of `cross-origin` (as CDN resources are typically meant to be included in a cross-site context). We can see that this is indeed the case, as 96.8% of sites set the CORP header value to `cross-origin`, compared to 2.9% that set it to `same-site` and 0.3% that use the more restrictive `same-origin`.
 
 With this change, it is no surprise that the adoption of `Cross-Origin-Embedder-Policy` is also steadily increasing: in 2021, 911 sites enabled this header—significantly more than the 6 sites of last year. It will be interesting to see how this will further develop next year!
 
-Finally, another anti-XS-Leak header, [`Cross-Origin-Opener-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy), has also seen a significant boost compared to last year. We found 15,727 sites that now enable this security mechanism, which is a significant increase compared to last year when only 31 sites were protected from certain XS-Leak attacks.
+Finally, another anti-XS-Leak header, [`Cross-Origin-Opener-Policy`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy), has also seen a significant boost compared to last year. We found 15,727 sites that now enable this security mechanism, which is a significant increase compared to last year when only 31 sites were protected from certain XS-Leak attacks.
 
 ### Web Cryptography API
 
@@ -974,7 +974,7 @@ When looking at the adoption of certain security features such as CSP and `X-Fra
       <tr>
         <td>Blogger (Blogs)</td>
         <td>
-          X-Content-Type-Options (99.6%),<br/>
+          X-Content-Type-Options (99.6%),<br>
           X-XSS-Protection (99.6%)
         </td>
       </tr>
@@ -986,7 +986,7 @@ When looking at the adoption of certain security features such as CSP and `X-Fra
         <td>Drupal (CMS)</td>
         <td>
           X-Content-Type-Options (77.9%),
-          <br />
+          <br>
           X-Frame-Options (83.1%)
         </td>
       </tr>
@@ -997,35 +997,35 @@ When looking at the adoption of certain security features such as CSP and `X-Fra
       <tr>
         <td>Shopify (E-commerce)</td>
         <td>
-          Content-Security-Policy (96.4%),<br/>
-          Expect-CT (95.5%),<br/>
-          Report-To (95.5%),<br/>
-          Strict-Transport-Security (98.2%),<br/>
-          X-Content-Type-Options (98.3%),<br/>
-          X-Frame-Options (95.2%),<br/>
+          Content-Security-Policy (96.4%),<br>
+          Expect-CT (95.5%),<br>
+          Report-To (95.5%),<br>
+          Strict-Transport-Security (98.2%),<br>
+          X-Content-Type-Options (98.3%),<br>
+          X-Frame-Options (95.2%),<br>
           X-XSS-Protection (98.2%)
         </td>
       </tr>
       <tr>
         <td>Squarespace (CMS)</td>
         <td>
-          Strict-Transport-Security (87.9%),<br/>
+          Strict-Transport-Security (87.9%),<br>
           X-Content-Type-Options (98.7%)
         </td>
       </tr>
       <tr>
         <td>Sucuri (CDN)</td>
         <td>
-          Content-Security-Policy (84.0%),<br/>
-          X-Content-Type-Options (88.8%),<br/>
-          X-Frame-Options (88.8%),<br/>
+          Content-Security-Policy (84.0%),<br>
+          X-Content-Type-Options (88.8%),<br>
+          X-Frame-Options (88.8%),<br>
           X-XSS-Protection (88.7%)
         </td>
       </tr>
       <tr>
         <td>Wix (Blogs)</td>
         <td>
-          Strict-Transport-Security (98.8%),<br/>
+          Strict-Transport-Security (98.8%),<br>
           X-Content-Type-Options (99.4%)
         </td>
       </tr>

@@ -48,7 +48,6 @@
 {% block styles %}
 {{ super() }}
 <link rel="stylesheet" href="{{ get_versioned_filename('/static/css/page.css') }}">
-<link rel="preload" href="{{ get_versioned_filename('/static/css/page.css') }}" as="style" />
 {% endblock %}
 
 {% block scripts %}
@@ -106,6 +105,7 @@ window.discussion_url="https://discuss.httparchive.org/t/{{ metadata.get('discus
 
 
 {% macro render_byline() %}
+<div class="bylines">
   <div class="byline">{{ self.written_by_before() }}
   {% for author in metadata.get('authors') %}
   <a class="author" href="{{ url_for('contributors', year=year, lang=lang, _anchor=author) }}">{{ config.contributors[author].name if author in config.contributors else author }}</a>{% if loop.length > 2 %}{{ self.comma() if loop.index < loop.length - 1 }}{{ self.oxford_comma() if loop.index == loop.length - 1 }}{% endif %}
@@ -148,38 +148,84 @@ window.discussion_url="https://discuss.httparchive.org/t/{{ metadata.get('discus
   {% endfor %}{{ self.translated_by_after() }}
   </div>
   {% endif %}
+</div>
+{% endmacro %}
+
+{% macro render_publish_dates() %}
+<div class="article-dates">
+  <div class="article-date">
+  {{ self.date_published() }}<time id="published-date" datetime="{{ date_published }}">{{ date_published[0:4] }}/{{ date_published[5:7] }}/{{ date_published[8:10] }}</time>
+  </div>
+  {% if date_published != date_modified %}
+  <div class="article-date">
+    {{ self.date_updated() }}<time id="modified-date" datetime="{{ date_modified }}">{{ date_modified[0:4] }}/{{ date_modified[5:7] }}/{{ date_modified[8:10] }}</time>
+  </div>
+  {% endif %}
+  <script nonce="{{ csp_nonce() }}">
+    // Update chapter dates to locale/language-specific format immeadiately with inline
+    // script to avoid annoying shift as much as possible since this is in initial viewport.
+    function formatDates(selector) {
+      if (window.Intl && window.Intl.DateTimeFormat) {
+        var publishedDateElement=document.querySelector(selector);
+        if (!publishedDateElement) return;
+        var publishedDate = new Date(publishedDateElement.getAttribute("datetime"));
+
+        // Set up the date format - initially using the users default locale
+        // This allows different locales in same language to be respected
+        // (e.g. en-GB or en-US).
+        var options = { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" };
+        var dateFormat = new Intl.DateTimeFormat([], options)
+        const usedOptions = dateFormat.resolvedOptions();
+        if (!usedOptions.locale.startsWith("{{ lang }}")) {
+          // Reader is looking at a page in a language that is not their default locale
+          // Set date format to page's language locale to avoid incorrect date translation.
+          dateFormat = new Intl.DateTimeFormat("{{ lang }}", options)
+        }
+        publishedDateElement.innerHTML = dateFormat.format(publishedDate);
+
+      } else {
+        console.log("Could not format date");
+      }
+    }
+
+    formatDates("#published-date");
+    formatDates("#modified-date");
+  </script>
+</div>
 {% endmacro %}
 
 {% macro render_webmentions() %}
-  <h2 id="reactions">
-    <a href="#reactions" class="anchor-link">{{ self.reactions() }}</a>
-  </h2>
-  <div class="reactions" data-source="{{ self.source() }}">
-    <div class="reaction-tabs" role="tablist" aria-label="{{ self.reactions() }}">
-      <button id="likes-tab" role="tab" aria-selected="true" aria-controls="likes-panel" tabindex="0">
-        <span id="likes-count">0</span>
-        <span id="likes-label" data-singular="{{ self.like() }}" data-plural="{{ self.likes() }}" data-plural-alt="{{ self.likesAlt() }}">{{ self.likes() }}</span>
-      </button>
-      <button id="reposts-tab" role="tab" aria-selected="false" aria-controls="reposts-panel" tabindex="-1">
-        <span id="reposts-count">0</span>
-        <span id="reposts-label" data-singular="{{ self.repost() }}" data-plural="{{ self.reposts() }}" data-plural-alt="{{ self.repostsAlt() }}">{{ self.reposts() }}</span>
-      </button>
-      <button id="replies-tab" role="tab" aria-selected="false" aria-controls="replies-panel" tabindex="-1">
-        <span id="replies-count">0</span>
-        <span id="replies-label" data-singular="{{ self.reply() }}" data-plural="{{ self.replies() }}" data-plural-alt="{{ self.repliesAlt() }}">{{ self.replies() }}</span>
-      </button>
-      <button id="mentions-tab" role="tab" aria-selected="false" aria-controls="mentions-panel" tabindex="-1">
-        <span id="mentions-count">0</span>
-        <span id="mentions-label" data-singular="{{ self.mention() }}" data-plural="{{ self.mentions() }}" data-plural-alt="{{ self.mentionsAlt() }}">{{ self.mentions() }}</span>
-      </button>
-    </div>
-    <div id="likes-panel" role="tabpanel" tabindex="0" aria-labelledby="likes-tab">
-    </div>
-    <div id="reposts-panel" role="tabpanel" tabindex="0" aria-labelledby="reposts-tab" hidden>
-    </div>
-    <div id="replies-panel" role="tabpanel" tabindex="0" aria-labelledby="replies-tab" hidden>
-    </div>
-    <div id="mentions-panel" role="tabpanel" tabindex="0" aria-labelledby="mentions-tab" hidden>
+  <div id="reactions" class="no-reactions">
+    <h2>
+      <a href="#reactions" class="anchor-link">{{ self.reactionsTitle() }}</a>
+    </h2>
+    <div class="reactions" data-source="{{ self.source() }}">
+      <div class="reaction-tabs" role="tablist" aria-label="{{ self.reactions() }}">
+        <button id="likes-tab" role="tab" aria-selected="true" aria-controls="likes-panel" tabindex="0" class="no-reactions">
+          <span id="likes-count">0</span>
+          <span id="likes-label" data-singular="{{ self.like() }}" data-plural="{{ self.likes() }}" data-plural-alt="{{ self.likesAlt() }}">{{ self.likes() }}</span>
+        </button>
+        <button id="reposts-tab" role="tab" aria-selected="false" aria-controls="reposts-panel" tabindex="-1" class="no-reactions">
+          <span id="reposts-count">0</span>
+          <span id="reposts-label" data-singular="{{ self.repost() }}" data-plural="{{ self.reposts() }}" data-plural-alt="{{ self.repostsAlt() }}">{{ self.reposts() }}</span>
+        </button>
+        <button id="replies-tab" role="tab" aria-selected="false" aria-controls="replies-panel" tabindex="-1" class="no-reactions">
+          <span id="replies-count">0</span>
+          <span id="replies-label" data-singular="{{ self.reply() }}" data-plural="{{ self.replies() }}" data-plural-alt="{{ self.repliesAlt() }}">{{ self.replies() }}</span>
+        </button>
+        <button id="mentions-tab" role="tab" aria-selected="false" aria-controls="mentions-panel" tabindex="-1" class="no-reactions">
+          <span id="mentions-count">0</span>
+          <span id="mentions-label" data-singular="{{ self.mention() }}" data-plural="{{ self.mentions() }}" data-plural-alt="{{ self.mentionsAlt() }}">{{ self.mentions() }}</span>
+        </button>
+      </div>
+      <div id="likes-panel" role="tabpanel" tabindex="0" aria-labelledby="likes-tab">
+      </div>
+      <div id="reposts-panel" role="tabpanel" tabindex="0" aria-labelledby="reposts-tab" hidden>
+      </div>
+      <div id="replies-panel" role="tabpanel" tabindex="0" aria-labelledby="replies-tab" hidden>
+      </div>
+      <div id="mentions-panel" role="tabpanel" tabindex="0" aria-labelledby="mentions-tab" hidden>
+      </div>
     </div>
   </div>
 {% endmacro %}
@@ -201,9 +247,9 @@ window.discussion_url="https://discuss.httparchive.org/t/{{ metadata.get('discus
           <div aria-hidden="true">
             <a href="{{ url_for('contributors', year=year, lang=lang, _anchor=author) }}" tabindex="-1">
               {% if authordata.avatar_url|int != 0 %}
-              <img class="avatar" alt="{{ authordata.name }} avatar" src="https://avatars.githubusercontent.com/u/{{ authordata.avatar_url }}?v=4&s=200" height="200" width="200" loading="lazy" />
+              <img class="avatar" alt="{{ authordata.name }} avatar" src="https://avatars.githubusercontent.com/u/{{ authordata.avatar_url }}?v=4&s=200" height="200" width="200" loading="lazy">
               {% else %}
-              <img class="avatar" alt="{{ authordata.name }} avatar" src="{{ authordata.avatar_url }}" height="200" width="200" loading="lazy" />
+              <img class="avatar" alt="{{ authordata.name }} avatar" src="{{ authordata.avatar_url }}" height="200" width="200" loading="lazy">
               {% endif %}
             </a>
           </div>
@@ -353,15 +399,16 @@ window.discussion_url="https://discuss.httparchive.org/t/{{ metadata.get('discus
                 <span class="chapter-unedited">{{ self.unedited() }}</span>
                 {% endif %}
             </h1>
+            {{ render_publish_dates() }}
             <!-- Show large image for large screens and high density screens and use avif and webp when supported -->
             <picture>
-              <source media="(min-width: 866px)" type="image/avif" srcset="{{ chapter_hero_dir }}hero_lg.avif" />
-              <source media="(min-width: 866px)" type="image/webp" srcset="{{ chapter_hero_dir }}hero_lg.webp" />
-              <source media="(min-width: 866px)" type="image/jpeg" srcset="{{ chapter_hero_dir }}hero_lg.jpg" />
-              <source type="image/avif" srcset="{{ chapter_hero_dir }}hero_sm.avif 1x, {{ chapter_hero_dir }}hero_lg.avif 2x" />
-              <source type="image/webp" srcset="{{ chapter_hero_dir }}hero_sm.webp 1x, {{ chapter_hero_dir }}hero_lg.webp 2x" />
-              <source type="image/jpeg" srcset="{{ chapter_hero_dir }}hero_sm.jpg 1x, {{ chapter_hero_dir }}hero_lg.jpg 2x" />
-              <img src="{{ chapter_hero_dir }}hero_lg.jpg" class="content-banner" alt="" width="866" height="433" loading="eager" />
+              <source media="(min-width: 866px)" type="image/avif" srcset="{{ chapter_hero_dir }}hero_lg.avif">
+              <source media="(min-width: 866px)" type="image/webp" srcset="{{ chapter_hero_dir }}hero_lg.webp">
+              <source media="(min-width: 866px)" type="image/jpeg" srcset="{{ chapter_hero_dir }}hero_lg.jpg">
+              <source type="image/avif" srcset="{{ chapter_hero_dir }}hero_sm.avif 1x, {{ chapter_hero_dir }}hero_lg.avif 2x">
+              <source type="image/webp" srcset="{{ chapter_hero_dir }}hero_sm.webp 1x, {{ chapter_hero_dir }}hero_lg.webp 2x">
+              <source type="image/jpeg" srcset="{{ chapter_hero_dir }}hero_sm.jpg 1x, {{ chapter_hero_dir }}hero_lg.jpg 2x">
+              <img src="{{ chapter_hero_dir }}hero_lg.jpg" class="content-banner" alt="" width="866" height="433" fetchpriority="high">
             </picture>
             {{ render_byline() }}
             {{ self.main_content() }}
@@ -377,27 +424,34 @@ window.discussion_url="https://discuss.httparchive.org/t/{{ metadata.get('discus
         <section class="authors">
             {{ render_authors() }}
         </section>
-        {% if metadata.get('discuss') %}
-        <div id="cta-container">
-          <a class="alt btn chapter-cta comment-cta" hreflang="en" href="https://discuss.httparchive.org/t/{{ metadata.get('discuss') }}">
+        <div id="cta-container" class="invisible">
+          {% if metadata.get('discuss') %}
+          <a class="alt btn chapter-cta comment-cta discuss-cta hidden" hreflang="en" href="https://discuss.httparchive.org/t/{{ metadata.get('discuss') }}">
             <svg width="22" height="22" role="img" aria-labelledby="discuss-this-chapter-cta">
               <title id="discuss-this-chapter-cta">{{ self.discuss_this_chapter() }}:</title>
               <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comment-logo"></use>
             </svg>
-            <span class="num-comments"><span class="not-mobile">{{ self.comments_fallback() }}</span></span> <span data-translation class="comment-singular visually-hidden-mobile">{{ self.comment() }}</span>
-            <span data-translation class="comment-plural visually-hidden-mobile">{{ self.comments() }}</span>
+            <span class="num-comments">{{ self.comments_fallback() }}</span> <span data-translation class="comment-singular">{{ self.comment() }}</span>
+            <span data-translation class="comment-plural">{{ self.comments() }}</span>
           </a>
-        </div>
-        {% elif year | int >= 2021 %}
-        <div id="cta-container">
-          <a class="alt btn chapter-cta comment-cta" href="#reactions">
+          {% elif year | int >= 2021 %}
+          <a class="alt btn chapter-cta comment-cta webmentions-cta hidden" href="#reactions">
             <svg width="22" height="22" role="img" aria-hidden="true">
               <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comment-logo"></use>
             </svg>
-            {{ self.reactions() }}
+            <span class="num-reactions"></span> <span class="reactions-label" data-singular="{{ self.reaction() }}" data-plural="{{ self.reactions() }}" data-plural-alt="{{ self.reactionsAlt() }}">{{ self.reactionsTitle() }}</span>
           </a>
+          {% endif %}
+          <button class="alt btn chapter-cta share-cta hidden">
+            <svg width="22" height="22" role="img" aria-hidden="true" class="apple-icon hidden">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#share-apple-logo"></use>
+            </svg>
+            <svg width="22" height="22" role="img" aria-hidden="true" class="android-icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#share-android-logo"></use>
+            </svg>
+            {{ self.share() }}
+          </button>
         </div>
-        {% endif %}
         <nav aria-label="{{ self.prev_next_title() }}" id="chapter-navigation">
             {{ render_prevnext() }}
         </nav>

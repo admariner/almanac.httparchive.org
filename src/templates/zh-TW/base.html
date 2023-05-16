@@ -83,13 +83,20 @@
 {% block reviewed_and_analyzed_by_after %}{% endblock %}
 {% block analysis_and_editing_by_after %}{% endblock %}
 
+{% block date_published %}發布日期：{% endblock %}
+{% block date_updated %}更新日期：{% endblock %}
+
 {% block unedited %}[尚未編輯]{% endblock %}
 
 {% block author %}作者{% endblock %}
 {% block authors %}作者{% endblock %}
 
+{% block reaction %}個反應{% endblock %}
 {% block reactions %}反應{% endblock %}
+{% block reactionsTitle %}反應{% endblock %}
+{% block reactionsAlt %}{% endblock %}
 {% block source %}查看原始碼{% endblock %}
+{% block share %}分享{% endblock %}
 
 {% block like %}則回覆{% endblock %}
 {% block repost %}提及{% endblock %}
@@ -117,7 +124,7 @@
 {% block rss_feed %}RSS Feed{% endblock %}
 
 {% block featured_chapter %}章節精選{% endblock %}
-{% block featured_chapter_last_year %}精選章節<br/>從 {{ year|int -1 }} Web Almanac{% endblock %}
+{% block featured_chapter_last_year %}精選章節<br>從 {{ year|int -1 }} Web Almanac{% endblock %}
 
 {# Check if read_chapter already defined in child template as macros can't be overridden #}
 {% if not read_chapter %}
@@ -188,7 +195,9 @@ Web Almanac 網路年鑑是被熱情的網路社群擁抱而茁壯。 {{ self.co
     "capabilities": "功能",
     "jamstack": "Jamstack",
     "webassembly": "WebAssembly",
-    "structured-data": "结构化数据"
+    "structured-data": "Structured Data",
+    "sustainability": "可持續性",
+    "interop": "互操作性"
   }
 %}
 {% if (year == "2019" or year == "2020") %}

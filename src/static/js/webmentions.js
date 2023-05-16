@@ -1,4 +1,5 @@
 // Code related to parsing and showing webmentions
+// And Share button
 
 // Gets the webmentions json data from current URL
 async function getWebmentions(targetURL) {
@@ -51,17 +52,23 @@ function setReactionsLabel(length, reactionLabel) {
 
   // Singular
   if (plural_rules.select(length) === "one") {
-    reactionLabel.textContent = reactionLabel.getAttribute("data-singular");
+    reactionLabel.textContent = reactionLabel.dataset.singular;
     return;
   }
 
   // Few - alternative plural (Used by "ru" and "uk")
-  if (reactionLabel.getAttribute("data-plural-alt") !== "" && plural_rules.select(length) === "few") {
-    reactionLabel.textContent = reactionLabel.getAttribute("data-plural-alt");
-      return;
+  if (reactionLabel.dataset.plural_alt !== "" && plural_rules.select(length) === "few") {
+    reactionLabel.textContent = reactionLabel.dataset.plural_alt;
+    return;
   }
 
-  // Everything else sticks with the default plural
+  // If a plural exists use that.
+  if (reactionLabel.dataset.plural) {
+    reactionLabel.textContent = reactionLabel.dataset.plural;
+    return;
+  }
+
+  // Everything else sticks with the default
   return;
 
 }
@@ -75,8 +82,12 @@ function renderReactions(webmentions, reactionType, wmProperty) {
     return;
   }
 
-  // Add the count to the reaction tab
+  // Add the count to the reaction tab and, if non-zero then unhide
   document.querySelector(`#${reactionType}-count`).textContent = reactions.length;
+  if (reactions.length > 0) {
+    document.querySelector(`#${reactionType}-tab`).classList.remove("no-reactions");
+    document.querySelector('#reactions').classList.remove("no-reactions");
+  }
   const reactionLabel = document.querySelector(`#${reactionType}-label`);
 
   if (reactions && reactions.length) {
@@ -170,7 +181,7 @@ function renderReactions(webmentions, reactionType, wmProperty) {
       const reactionASource = document.createElement("a");
       reactionASource.setAttribute("class", "webmention-source");
       reactionASource.setAttribute("href", reaction["url"]);
-      reactionASource.textContent = document.querySelector(".reactions").getAttribute("data-source");
+      reactionASource.textContent = document.querySelector(".reactions").dataset.source;
 
       reactionDivMeta.appendChild(reactionTime);
       reactionDivMeta.appendChild(reactionSpan);
@@ -187,9 +198,33 @@ function renderReactions(webmentions, reactionType, wmProperty) {
   document.querySelector(`#${reactionType}-panel`).appendChild(webmentionReactionsList);
 }
 
+function setActiveTab() {
+
+  // The default is likes so we have "likes" then all good:
+  const likesTab = document.querySelector('#likes-tab');
+  if (!likesTab || !likesTab.classList.contains('no-reactions')) {
+    return;
+  }
+
+  // If no likes, then try each in turn and find the first one with reactions
+  for (const tab of ["reposts-tab", "replies-tab", "mentions-tab"]) {
+    const tabElement = document.querySelector(`#${tab}`);
+    if (!tabElement.classList.contains('no-reactions')) {
+      changeTabs(tabElement);
+      return;
+    }
+  }
+
+}
+
 // Parses and renders mentions into likes, reposts, replies and mentions
 function renderWebmentions(webmentions) {
+  if (!document.querySelector('.webmentions-cta')) {
+    return;
+  }
+
   if (!webmentions.length) {
+    document.querySelector('#cta-container').classList.remove('invisible');
     return;
   }
 
@@ -197,6 +232,17 @@ function renderWebmentions(webmentions) {
   renderReactions(webmentions, "reposts", "repost-of");
   renderReactions(webmentions, "replies", "in-reply-to");
   renderReactions(webmentions, "mentions", "mention-of");
+
+  // Show count of reactions (except if 0)
+  if (webmentions.length > 0) {
+    document.querySelectorAll('.num-reactions').forEach(t => t.innerText = webmentions.length);
+    document.querySelectorAll('.reactions-label').forEach(t => setReactionsLabel(webmentions.length, t));
+    document.querySelector('.webmentions-cta').classList.remove('hidden');
+  }
+  document.querySelector('#cta-container').classList.remove('invisible');
+
+  // Set the first active tab (in case no "likes" so that tab is hidden)
+  setActiveTab();
 }
 
 // Process webmention promise
@@ -275,6 +321,63 @@ function addTabListeners() {
 }
 
 
+// Change tabs for webmentions UI
+function handleShareButton() {
+    // DOM references
+  const button = document.querySelector('.share-cta');
+  const appleIcon = button.querySelector('.apple-icon');
+  const androidIcon = button.querySelector('.android-icon');
+  const canonical = document.querySelector('link[rel="canonical"]');
+
+  // Feature detection to see if the Web Share API is supported.
+  if (!('share' in navigator)) {
+    return;
+  }
+
+  // Find out if the user is on a device made by Apple and, if so, switch the icon.
+  if (/Mac|iPhone/.test(navigator.platform)) {
+    appleIcon.classList.remove('hidden');
+    androidIcon.classList.add('hidden');
+  }
+
+  button.addEventListener('click', async () => {
+    // Title and text are identical, since the title may actually be ignored.
+    const title = document.title;
+    const text = document.title;
+    // Use the canonical URL, if it exists, else, the current location.
+    const url = canonical?.href || location.href;
+
+    gtag('event', 'WebShare', {
+      'event_category': 'clicks',
+      'event_label': url,
+      'transport_type': 'beacon',
+      'value': 1
+    })
+
+    try {
+      await navigator.share({
+        url,
+        text,
+        title,
+      });
+      return;
+    } catch (err) {
+      // If the user cancels, an `AbortError` is thrown.
+      if (err.name !== "AbortError") {
+        console.error(err.name, err.message);
+        gtag('event', 'error', {
+          'event_category': 'WebShare',
+          'event_label': err.message,
+          'transport_type': 'beacon',
+          'value': 1
+        })
+      }
+    }
+  });
+  button.classList.remove('hidden');
+}
+
+handleShareButton();
 addTabListeners();
 const BASE_URL = "https://almanac.httparchive.org";
 processWebmentions(BASE_URL + window.location.pathname);

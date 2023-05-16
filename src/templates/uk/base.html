@@ -83,13 +83,20 @@
 {% block reviewed_and_analyzed_by_after %}{% endblock %}
 {% block analysis_and_editing_by_after %}{% endblock %}
 
+{% block date_published %}Дата публікації: {% endblock %}
+{% block date_updated %}Дата оновлення: {% endblock %}
+
 {% block unedited %}[Очікує корегування]{% endblock %}
 
 {% block author %}Автор{% endblock %}
 {% block authors %}Автори{% endblock %}
 
-{% block reactions %}Реакції{% endblock %}
+{% block reaction %}pеакція{% endblock %}
+{% block reactions %}pеакції{% endblock %}
+{% block reactionsTitle %}Pеакції{% endblock %}
+{% block reactionsAlt %}pеакцій{% endblock %}
 {% block source %}Переглянути джерело{% endblock %}
+{% block share %}поділитися{% endblock %}
 
 {% block like %}лайк{% endblock %}
 {% block repost %}репост{% endblock %}
@@ -117,7 +124,7 @@
 {% block rss_feed %}RSS Feed{% endblock %}
 
 {% block featured_chapter %}Рекомендований розділ{% endblock %}
-{% block featured_chapter_last_year %}Рекомендований розділ<br/>з Web Almanac {{ year|int -1 }}{% endblock %}
+{% block featured_chapter_last_year %}Рекомендований розділ<br>з Web Almanac {{ year|int -1 }}{% endblock %}
 
 {# Check if read_chapter already defined in child template as macros can't be overridden #}
 {% if not read_chapter %}
@@ -188,7 +195,9 @@
     "capabilities": "Можливості",
     "jamstack": "Jamstack",
     "webassembly": "WebAssembly",
-    "structured-data": "Структуровані дані"
+    "structured-data": "Structured Data",
+    "sustainability": "Стійкість",
+    "interop": "Cумісність"
   }
 %}
 {% if (year == "2019" or year == "2020") %}

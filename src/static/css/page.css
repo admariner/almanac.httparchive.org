@@ -32,6 +32,10 @@
   margin: 0 -1rem;
 }
 
+.width-20 {
+  width: 20%;
+}
+
 .width-45 {
   width: 45%;
 }
@@ -172,6 +176,10 @@
   margin-bottom: 2rem;
 }
 
+.title {
+  margin: 10px 0;
+}
+
 .content ul li {
   list-style: none;
 }
@@ -187,7 +195,7 @@
 }
 
 .content-banner {
-  max-width: 100%;
+  width: 100%;
   height: auto;
   border-radius: 8px;
   border-radius: 0.5rem;
@@ -206,8 +214,24 @@
   font-weight: normal;
 }
 
+.article-dates {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 20px;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.article-dates time {
+  white-space: nowrap;
+}
+
 .btn.chapter-cta > svg {
   margin: -6px 3px;
+}
+
+#cta-container.invisible {
+  opacity: 0;
 }
 
 #cta-container {
@@ -219,6 +243,8 @@
   bottom: 1.25rem;
   z-index: 1;
   justify-content: flex-end;
+  opacity: 1;
+  transition: opacity 1000ms;
 }
 
 .chapter-cta {
@@ -243,6 +269,15 @@
 #num-comments {
   line-height: 24px;
   line-height: 1.5rem;
+}
+
+.share-cta {
+  line-height: 1.6em;
+}
+
+.share-cta:hover svg,
+.share-cta:focus svg {
+  fill: white;
 }
 
 [data-translation] {
@@ -620,11 +655,11 @@ td.numeric {
   text-align: right;
 }
 
-td .numeric-good {
+.numeric-good {
   color: #38761d;
 }
 
-td .numeric-bad {
+.numeric-bad {
   color: #b60000;
 }
 
@@ -761,9 +796,7 @@ figure .fig-desktop {
   table {
     font-size: 0.8em;
   }
-}
 
-@media (max-width: 56.25em) {
   figure {
     margin: 0 15px;
     margin: 0 0.9375rem;
@@ -830,6 +863,13 @@ figure .fig-desktop {
   }
 }
 
+/* Mobile View */
+@media (max-width: 37.5em) {
+  .article-dates {
+    display: block;
+  }
+}
+
 /* Code highlighting */
 .code-block {
   margin: 8px 0;
@@ -882,6 +922,10 @@ pre {
 
 .reaction-tabs > button > span {
   pointer-events: none;
+}
+
+.no-reactions {
+  display: none;
 }
 
 .webmention-likes,

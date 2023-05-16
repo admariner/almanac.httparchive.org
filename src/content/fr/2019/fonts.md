@@ -45,13 +45,13 @@ Les recommandations pour réduire les coûts de performance du chargement des po
   )
 }}
 
-Le fait que les trois quarts soient hébergés sur des serveurs tierces-parties n'est peut-être pas surprenant compte tenu de la domination de Google Fonts dont nous parlerons [ci-dessous](#quels-sont-les-hébergeurs-tierces-parties-les-plus-populaires-).
+Le fait que les trois quarts soient hébergés sur des serveurs tierces-parties n'est peut-être pas surprenant compte tenu de la domination de Google Fonts dont nous parlerons [ci-dessous](#quels-sont-les-hébergeurs-tierces-parties-les-plus-populaires).<!-- markdownlint-disable-line MD051 -->
 
 Google fournit des polices en utilisant des fichiers CSS tiers hébergés sur https://fonts.googleapis.com. Les développeurs font des requêtes vers ces feuilles de style en utilisant les balises `<link>` dans leur code. Bien que ces feuilles de style soient bloquantes, elles sont très petites. Cependant, les fichiers de police sont hébergés sur un autre domaine, `https://fonts.gstatic.com`. Le modèle consistant à exiger deux rebonds séparés vers deux domaines différents fait de `preconnect` une excellente option ici pour la deuxième requête qui ne sera pas découverte avant le téléchargement de la feuille de style.
 
 Notez que si `preload` pourrait être un ajout intéressant pour charger les fichiers de police plus haut dans la cascade de requêtes (rappelez-vous que `preconnect` établit la connexion, il ne demande pas le contenu du fichier), `preload` n'est pas encore disponible avec Google Fonts. Google Fonts génère des URL uniques pour leurs fichiers de police <a hreflang="en" href="https://github.com/google/fonts/issues/1067">qui sont susceptibles de changer</a>.
 
-### Quels sont les hébergeurs tierces-parties les plus populaires&nbsp;?
+### Quels sont les hébergeurs tierces-parties les plus populaires&nbsp;? {quels-sont-les-hébergeurs-tierces-parties-les-plus-populaires}
 
 <figure>
   <table>
@@ -181,7 +181,7 @@ Si l'utilisation élevée des Google Fonts ici est très impressionnante, il est
 
 - Lorsque des pages utilisent des Google Fonts, elles utilisent _beaucoup_ de Google Fonts. Elles sont fournies sans coût monétaire, après tout. Peut-être sont-elles utilisées dans un éditeur WYSIWYG populaire&nbsp;? Cela semble être une explication très probable.
 - Ou il se pourrait de façon plus improbable que beaucoup de gens utilisent les Google Fonts avec `@import` au lieu de `<link>`.
-- Ou, si nous voulons aller plus loin dans des scénarios très improbables, cela pourrait signifier que beaucoup de gens utilisent des polices Google avec un [HTTP `Link:` header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link) à la place.
+- Ou, si nous voulons aller plus loin dans des scénarios très improbables, cela pourrait signifier que beaucoup de gens utilisent des polices Google avec un [HTTP `Link:` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Link) à la place.
 
 {{ figure_markup(
   caption="Pourcentage des pages qui incluent un lien vers des feuilles de style Google Fonts comme premier noeud dans l'entête du document (<code><head></code>).",
@@ -540,7 +540,7 @@ La fonction <a hreflang="en" href="https://caniuse.com/#feat=mdn-css_at-rules_fo
 
 Je suppose que cela va augmenter au fil du temps, surtout maintenant que <a hreflang="en" href="https://www.zachleat.com/web/google-fonts-display/">Google Fonts ajoute `font-display` à tous les nouveaux extraits de code</a> copiés de leur site.
 
-Si vous utilisez les Google Fonts, mettez à jour vos snippets&nbsp;! Si vous n'utilisez pas les Google Fonts, utilisez `font-display`&nbsp;! Pour en savoir plus sur l'affichage des polices, consultez le site [MDN](https://developer.mozilla.org/fr/docs/Web/CSS/@font-face/font-display).
+Si vous utilisez les Google Fonts, mettez à jour vos snippets&nbsp;! Si vous n'utilisez pas les Google Fonts, utilisez `font-display`&nbsp;! Pour en savoir plus sur l'affichage des polices, consultez le site [MDN](https://developer.mozilla.org/docs/Web/CSS/@font-face/font-display).
 
 Voyons voir quelles sont les valeurs les plus populaires de `font-display`&nbsp;:
 
@@ -604,7 +604,7 @@ Il est ironique qu'un plugin d'optimisation des performances puisse rendre vos p
 )
 }}
 
-[`unicode-range`](https://developer.mozilla.org/fr/docs/Web/CSS/%40font-face/unicode-range) est une excellente propriété CSS qui permet au navigateur de savoir précisément quels points de code la page souhaite utiliser dans le fichier de police. Si la déclaration `@font-face` a une `unicode-range`, le contenu de la page doit correspondre à l'un des points de code de la plage avant que la police ne soit demandée. C'est une très bonne chose.
+[`unicode-range`](https://developer.mozilla.org/docs/Web/CSS/%40font-face/unicode-range) est une excellente propriété CSS qui permet au navigateur de savoir précisément quels points de code la page souhaite utiliser dans le fichier de police. Si la déclaration `@font-face` a une `unicode-range`, le contenu de la page doit correspondre à l'un des points de code de la plage avant que la police ne soit demandée. C'est une très bonne chose.
 
 C'est une autre mesure qui, je pense, a été faussée par l'utilisation des Google Fonts, car Google Fonts utilise la "plage unicode" (`unicode-range`) dans la plupart (sinon la totalité) de ses CSS. Je m'attendrais à ce que cela soit moins fréquent du côté des utilisateurs, mais peut-être qu'il sera possible de filtrer les demandes de Google Fonts dans la prochaine édition de l'Almanach.
 
@@ -630,13 +630,13 @@ Il convient également de noter ici que des personnes plus intelligentes que moi
 )
 }}
 
-Historiquement, `font-stretch` a souffert d'un mauvais support des navigateurs et n'était pas une propriété `@font-face` bien connue. En savoir plus sur [`font-stretch` sur MDN](https://developer.mozilla.org/fr/docs/Web/CSS/font-stretch). Mais <a hreflang="en" href="https://caniuse.com/#feat=css-font-stretch">le support des navigateurs</a> s'est élargi.
+Historiquement, `font-stretch` a souffert d'un mauvais support des navigateurs et n'était pas une propriété `@font-face` bien connue. En savoir plus sur [`font-stretch` sur MDN](https://developer.mozilla.org/docs/Web/CSS/font-stretch). Mais <a hreflang="en" href="https://caniuse.com/#feat=css-font-stretch">le support des navigateurs</a> s'est élargi.
 
 Il a été suggéré que l'utilisation de polices condensées sur des fenêtres d'affichage plus petites permet d'afficher plus de texte, mais cette approche n'est pas couramment utilisée. Cela dit, le fait que cette propriété soit utilisée un demi-point de pourcentage de plus sur les ordinateurs de bureau que sur les téléphones mobiles est inattendu, et 7&nbsp;% semble beaucoup plus élevé que ce que j'aurais prédit.
 
 ## Les polices variables sont l'avenir
 
-[Les polices variables](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide) permettent d'inclure plusieurs poids et styles de police dans un seul fichier.
+[Les polices variables](https://developer.mozilla.org/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide) permettent d'inclure plusieurs poids et styles de police dans un seul fichier.
 
 {{ figure_markup(
   caption="Pourcentage des pages qui incluent une police variable.",

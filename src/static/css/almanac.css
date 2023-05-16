@@ -735,7 +735,8 @@ hr {
   opacity: 0.2;
 }
 
-blockquote {
+blockquote,
+blockquote p {
   position: relative;
   font-style: italic;
   font-size: 19px;
@@ -1075,6 +1076,7 @@ p.copyright a {
 
   .search-nav input {
     min-width: 200px;
+    margin-bottom: 10px;
   }
 
   header nav > ul > li:last-child {

@@ -88,7 +88,7 @@ We ontdekten dat 29,34% van de desktoppagina's en 30,66% van de mobiele pagina's
 ### Taalidentificatie
 
 {{ figure_markup(
-  caption="Desktopsites hebben een geldig kenmerk `lang`.",
+  caption="Mobiele sites hebben een geldig kenmerk `lang`.",
   content="77,67%",
   classes="big-number",
   sheets_gid="812908021",
@@ -96,7 +96,7 @@ We ontdekten dat 29,34% van de desktoppagina's en 30,66% van de mobiele pagina's
 )
 }}
 
-Door een HTML-attribuut `lang` in te stellen, kan een pagina gemakkelijk worden vertaald en is er betere ondersteuning voor schermlezers. Het percentage sites met een geldig HTML lang-attribuut op desktop dit jaar was 77,67%, met slechts 77,7% überhaupt een `lang`-attribuut.
+Door een HTML-attribuut `lang` in te stellen, kan een pagina gemakkelijk worden vertaald en is er betere ondersteuning voor schermlezers. Het percentage sites met een geldig HTML lang-attribuut op mobiel dit jaar was 77,67%, met slechts 77,7% überhaupt een `lang`-attribuut.
 
 ## Media op internet
 
@@ -510,7 +510,7 @@ Het is belangrijk om te onthouden dat digitale toegankelijkheid een burgerrecht 
 
 Het is erg belangrijk dat elke afhandeling van formulierfouten wordt doorgegeven aan ondersteunende technologie. Afhankelijk van de validatie-implementatie zijn er verschillende technieken om hiermee om te gaan. Het artikel van Web AIM <a hreflang="en" href="https://webaim.org/techniques/formvalidation/"><span lang="en">Usable and Accessible Form Validation and Error Recovery</span></a> is een geweldige bron voor meer informatie over verschillende strategieën voor toegankelijke formuliervalidatie.
 
-Als een formulierelement vereist is, moet dit ook worden gecommuniceerd naar ondersteunende technologie. Voor native HTML-formulierelementen kan het [`required` attribuut](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required) worden gebruikt en voor aangepaste elementen kan het [`aria-required`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-required_attribute) attribuut nodig zijn. Als er een probleem is met het indienen van een formulier, moet dit worden doorgegeven aan ondersteunende technologie.
+Als een formulierelement vereist is, moet dit ook worden gecommuniceerd naar ondersteunende technologie. Voor native HTML-formulierelementen kan het [`required` attribuut](https://developer.mozilla.org/docs/Web/HTML/Attributes/required) worden gebruikt en voor aangepaste elementen kan het [`aria-required`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-required_attribute) attribuut nodig zijn. Als er een probleem is met het indienen van een formulier, moet dit worden doorgegeven aan ondersteunende technologie.
 
 ### Formulierlabels
 
@@ -554,7 +554,7 @@ Deze lijst is niet uitputtend en is bedoeld om aan te moedigen na te denken over
 
 **UI ontwerpers**
   - Keuzes voor kleurcontrast, lettertypeselecties, overwegingen tussen spatiëring en regelhoogte.
-  - Overwegingen bij animaties (bepalen of ze nodig zijn, statische items aanleveren voor [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) scenario's, het ontwerpen van pauze/stop-mechanismen).
+  - Overwegingen bij animaties (bepalen of ze nodig zijn, statische items aanleveren voor [`prefers-reduced-motion`](https://developer.mozilla.org/docs/Web/CSS/@media/prefers-reduced-motion) scenario's, het ontwerpen van pauze/stop-mechanismen).
 
 **Productmanagers**
   - Prioriteer toegankelijkheidswerk in de roadmap, zodat het geen technische schuld wordt aan het einde van een achterstand.

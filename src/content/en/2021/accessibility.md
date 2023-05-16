@@ -104,11 +104,11 @@ When we consider the most popular sites in particular, the numbers for mobile ar
 ### Language identification
 
 {{ figure_markup(
-  caption="Desktop sites have a valid `lang` attribute.",
+  caption="Mobile sites have a valid `lang` attribute.",
   content="80.5%",
   classes="big-number",
   sheets_gid="2009310389",
-  sql_file="common_html_lang_attrib.sql"
+  sql_file="valid_html_lang.sql"
 )
 }}
 
@@ -138,7 +138,7 @@ Visible focus styles are helpful for everyone but are necessary for sighted keyb
   caption="Pages overriding focus styles.",
   description="A bar chart showing 92.6% of desktop sites and 94.1% of mobile sites use a `:focus` pseudo class, and 90.0% of desktop sites and 91.0% of mobile sites use that `:focus` pseudo class to set the outline to 0 or none. 0.6% of desktop sites and 0.6% of mobile sites use the `:focus-visible` pseudo class.",
   chart_url="https://docs.google.com/spreadsheets/d/e/2PACX-1vQf4cxIC7ywDV-K2RpfaTeCYI4URyJE1air8BCAxoOw7VW9MjGRQfwHuILvhw-6UmcWnsrAJ0-1TTD_/pubchart?oid=1277337070&format=interactive",
-  sheets_gid="1027210289",
+  sheets_gid="1517955087",
   sql_file="../css/focus_outline_0.sql"
 ) }}
 
@@ -159,13 +159,13 @@ The <a hreflang="en" href="https://www.w3.org/TR/mediaqueries-5">CSS Media Queri
   sql_file="../css/media_query_features.sql"
 ) }}
 
-[`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) is used by web authors to replace animations or other sources of motion on the web page with a more static experience, typically by removing or replacing the content. This can help a range of people that may be distracted or otherwise triggered by rapid movement on the screen. We found that 32% of websites use the `prefers-reduced-motion` media query.
+[`prefers-reduced-motion`](https://developer.mozilla.org/docs/Web/CSS/@media/prefers-reduced-motion) is used by web authors to replace animations or other sources of motion on the web page with a more static experience, typically by removing or replacing the content. This can help a range of people that may be distracted or otherwise triggered by rapid movement on the screen. We found that 32% of websites use the `prefers-reduced-motion` media query.
 
 `prefers-reduced-transparency` indicates that the end user has asked the operating system to minimize or eliminate translucency and transparency effects. This affordance might be turned on by end users to help with reading comprehension or to avoid common "halo effects" that can negatively affect users with visual impairments. We do not have data on the usage of this relatively new media query.
 
-[`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) (`high` or `low`) suggests that the end user would prefer a [high-contrast or low-contrast](#color-contrast) contrast theme. This can help with reading comprehension and eye strain. We do not have data on the usage of this relatively new media query though we found that 25% of websites use [`ms-high-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/-ms-high-contrast) which is a Windows-specific approach to handling contrast preferences.
+[`prefers-contrast`](https://developer.mozilla.org/docs/Web/CSS/@media/prefers-contrast) (`high` or `low`) suggests that the end user would prefer a [high-contrast or low-contrast](#color-contrast) contrast theme. This can help with reading comprehension and eye strain. We do not have data on the usage of this relatively new media query though we found that 25% of websites use [`ms-high-contrast`](https://developer.mozilla.org/docs/Web/CSS/@media/-ms-high-contrast) which is a Windows-specific approach to handling contrast preferences.
 
-[`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) (`light` or `dark`) allows a user to request light color on a dark background experience, or vice-versa. This was the earliest of the User Preference Media Queries to be introduced. This capability, commonly known as "dark mode" support, rose to prominence in 2019 after <a hreflang="en" href="https://en.wikipedia.org/wiki/Light-on-dark_color_scheme#History">Apple standardized it</a> in iOS 13 and iPadOS, though it had been a common accessibility feature for many years prior to that.
+[`prefers-color-scheme`](https://developer.mozilla.org/docs/Web/CSS/@media/prefers-color-scheme) (`light` or `dark`) allows a user to request light color on a dark background experience, or vice-versa. This was the earliest of the User Preference Media Queries to be introduced. This capability, commonly known as "dark mode" support, rose to prominence in 2019 after <a hreflang="en" href="https://en.wikipedia.org/wiki/Light-on-dark_color_scheme#History">Apple standardized it</a> in iOS 13 and iPadOS, though it had been a common accessibility feature for many years prior to that.
 
 While dark mode is recognized by many developers and designers as an accessibility affordance, it is important to note that dark mode may, in fact, reduce accessibility for certain users. Some people with <a hreflang="en" href="https://www.boia.org/blog/dark-mode-can-improve-text-readability-but-not-for-everyone">dyslexia or astigmatism might find light text on a dark background harder to read</a>, and might find that it exacerbates the halo effect. The important takeaway here is to let your user choose what works best for them. We found that 7% of websites use the `prefers-color-scheme` media query.
 
@@ -183,11 +183,11 @@ Before the introduction of HTML5, ARIA landmark roles were needed to accomplish 
   <table>
     <thead>
       <tr>
-        <th>HTML5 <br />element</th>
-        <th>ARIA role <br />equivalent</th>
-        <th>Pages with <br />element</th>
-        <th>Pages with <br />role</th>
-        <th>Pages with <br />element or role</th>
+        <th>HTML5 <br>element</th>
+        <th>ARIA role <br>equivalent</th>
+        <th>Pages with <br>element</th>
+        <th>Pages with <br>role</th>
+        <th>Pages with <br>element or role</th>
       </tr>
     </thead>
     <tbody>
@@ -301,7 +301,7 @@ Headings make it easier for screen readers to properly navigate a page by supply
   content="58%",
   classes="big-number",
   sheets_gid="461215072",
-  sql_file="???"
+  sql_file="lighthouse_a11y_audits.sql"
 )
 }}
 
@@ -408,7 +408,7 @@ The 2019 Click-Away Pound survey in the UK was designed "to explore the online s
 
 ### The `<label>` element
 
-One of the most important ways of making HTML forms accessible is using the `<label>` element to programmatically link the short descriptive text that describes the [form control](https://developer.mozilla.org/en-US/docs/Learn/Forms/Basic_native_form_controls). This is typically done by matching the `for` attribute on the `<label>` element with the `id` attribute on the form control element. For example:
+One of the most important ways of making HTML forms accessible is using the `<label>` element to programmatically link the short descriptive text that describes the [form control](https://developer.mozilla.org/docs/Learn/Forms/Basic_native_form_controls). This is typically done by matching the `for` attribute on the `<label>` element with the `id` attribute on the form control element. For example:
 
 ```html
 <label for="first-name">First Name</label>
@@ -464,9 +464,9 @@ There are <a hreflang="en" href="https://www.smashingmagazine.com/2018/06/placeh
 
 When web developers gather input from their end users, they need a clear way to indicate what information is optional, and what information is required to proceed. For example, a shipping address is optional if the end user is buying something online that they can download. However, the method of payment is most likely required in order to complete the sale.
 
-Before HTML5 introduced the [`required` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required) for `<input>` fields in 2014, web developers were forced to solve this problem on an ad hoc, case-by-case basis. A common convention is to put an asterisk (`*`) in the label for required input fields. This is purely a visual, stylistic convention—labels with asterisks don't enforce any kind of field validation. Additionally, screen readers typically announce this character as "star" unless it is explicitly hidden from assistive technology, which can be confusing.
+Before HTML5 introduced the [`required` attribute](https://developer.mozilla.org/docs/Web/HTML/Attributes/required) for `<input>` fields in 2014, web developers were forced to solve this problem on an ad hoc, case-by-case basis. A common convention is to put an asterisk (`*`) in the label for required input fields. This is purely a visual, stylistic convention—labels with asterisks don't enforce any kind of field validation. Additionally, screen readers typically announce this character as "star" unless it is explicitly hidden from assistive technology, which can be confusing.
 
-There are two attributes that can be used to communicate the required state of a form field to assistive technology. The `required` attribute will be announced by most screen readers and actually prevents form submission when a required field has not been properly filled out. The [`aria-required`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-required_attribute) attribute can be used to indicate required fields to assistive technology, but does not come with any associated behavior that would interfere with form submission.
+There are two attributes that can be used to communicate the required state of a form field to assistive technology. The `required` attribute will be announced by most screen readers and actually prevents form submission when a required field has not been properly filled out. The [`aria-required`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-required_attribute) attribute can be used to indicate required fields to assistive technology, but does not come with any associated behavior that would interfere with form submission.
 
 {{ figure_markup(
   image="form-required-controls.png",
@@ -544,7 +544,7 @@ We found that 27% of `alt` text attributes were empty. In an ideal world this wo
 
 #### Audio
 
-[`<track>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track) provides a way for a text equivalent to be provided for audio in `<audio>` and `<video>` elements. This allows people with permanent or temporary hearing loss to be able to understand audio content.
+[`<track>`](https://developer.mozilla.org/docs/Web/HTML/Element/track) provides a way for a text equivalent to be provided for audio in `<audio>` and `<video>` elements. This allows people with permanent or temporary hearing loss to be able to understand audio content.
 
 {{ figure_markup(
   caption="Desktop websites with an `<audio>` element have at least one accompanying `<track>` element",
@@ -567,8 +567,8 @@ The `<video>` element was only present on roughly 5% of the websites included in
   caption="Desktop websites with an `<video>` element have at least one accompanying `<track>` element",
   content="0.5%",
   classes="big-number",
-  sheets_gid="1198212185",
-  sql_file="audio_track_usage.sql"
+  sheets_gid="1261793459",
+  sql_file="video_track_usage.sql"
 )
 }}
 
@@ -626,14 +626,14 @@ When a button role is applied to an `<a>` element, it overrides the implicit lin
 
 {{ figure_markup(
   caption="Desktop websites have at least one link with a button role",
-  content="17.5%",
+  content="18.6%",
   classes="big-number",
   sheets_gid="1014817325",
   sql_file="anchors_with_role_button.sql"
 )
 }}
 
-We found that 18% of desktop pages (up from 16% in 2020) and 19% (up from 15% in 2020) of mobile pages contained at least one anchor element with `role="button"`. A native `<button>` element would be a better choice, <a hreflang="en" href="https://www.w3.org/TR/using-aria/#rule1">per the first rule of ARIA</a>.
+We found that 19% of desktop pages (up from 16% in 2020) and 18% (up from 15% in 2020) of mobile pages contained at least one anchor element with `role="button"`. A native `<button>` element would be a better choice, <a hreflang="en" href="https://www.w3.org/TR/using-aria/#rule1">per the first rule of ARIA</a>.
 
 This act of adding ARIA roles, or a <a hreflang="en" href="https://adrianroselli.com/2020/02/role-up.html">"role-up"</a>, is usually less ideal than using the correct native HTML element. Again, in the vast majority of these cases a better pattern than explicitly defining `role="button"` on the element in question would be to leverage the native HTML `<button>` element, as it comes with the expected semantics and behavior.
 
@@ -645,7 +645,7 @@ Removing an element's semantics means that it is no longer that element in terms
 
 ### Labelling and describing elements with ARIA
 
-Parallel to the DOM there is a similar browser structure called the [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Accessibility_tree). It contains information about HTML elements including accessible names, descriptions, roles and states. This information is conveyed to assistive technology through accessibility APIs.
+Parallel to the DOM there is a similar browser structure called the [accessibility tree](https://developer.mozilla.org/docs/Glossary/Accessibility_tree). It contains information about HTML elements including accessible names, descriptions, roles and states. This information is conveyed to assistive technology through accessibility APIs.
 
 The accessibility tree has a computation system that assigns the accessible name (if there is one) to a control, widget, group, or landmark such that it can be announced or targeted by assistive technology.
 
@@ -731,7 +731,7 @@ The most common CSS class names for this <a hreflang="en" href="https://css-tric
 
 The presence of new or updated content in the DOM sometimes needs to be communicated to screen readers. Some thought needs to be put into which updates need to be conveyed to avoid frustration. For example, form validation errors need to be conveyed whereas a lazy-loaded image may not. Updates to the DOM also need to be done in a way that is not disruptive.
 
-_ARIA live regions_ allow us to listen for changes in the DOM, such that the updated content can be announced by a screen reader. We found that 21% of desktop pages (up from 17% in 2020) and 20% of mobile pages (up from 16% in 2020) have live regions. For more information about live region variants and usage check out the [MDN live region documentation](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions) or play with this <a hreflang="en" href="https://dequeuniversity.com/library/aria/liveregion-playground">live demo by Deque</a>.
+_ARIA live regions_ allow us to listen for changes in the DOM, such that the updated content can be announced by a screen reader. We found that 21% of desktop pages (up from 17% in 2020) and 20% of mobile pages (up from 16% in 2020) have live regions. For more information about live region variants and usage check out the [MDN live region documentation](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/ARIA_Live_Regions) or play with this <a hreflang="en" href="https://dequeuniversity.com/library/aria/liveregion-playground">live demo by Deque</a>.
 
 ## Accessibility overlays
 
@@ -760,7 +760,7 @@ We found that 0.96% of desktop websites—or well over 60,000—use one of these
   description="A bar chart showing usage of the most popular accessibility apps by domain rank on desktop sites. AccessiBe is not used on the top 1,000 sites but is used by 0.15% of the top 10,000 sites, by 0.39% of the top 100,000 sites, by 0.37% of the top million sites and by 0.27% of all sites. AudioEye is used by 0.13%, 0.20%, 0.13%, 0.16%, and 0.24% respectively. EqualWeb is not used on the top 1,000 or top 10,000 site but is used by 0.02% of the top 100,000, 0.03% of the top million, and 0.02% of all sites. Texthelp similarly is not used on the top 1,000 or top 10,000 sites but is used by 0.02% of the top 100,000, 0.04% of the top million, and 0.02% of all sites. Finally, UserWay is not used on the top 1,000 sites but is used by 0.04% of the top 10,000 sites, by 0.09% of the top 100,000 sites, by 0.24% of the top million and by 0.39% of all sites. Only AudioEye is used by the top 1,000 sites.",
   chart_url="https://docs.google.com/spreadsheets/d/e/2PACX-1vQf4cxIC7ywDV-K2RpfaTeCYI4URyJE1air8BCAxoOw7VW9MjGRQfwHuILvhw-6UmcWnsrAJ0-1TTD_/pubchart?oid=473077851&format=interactive",
   sheets_gid="2077755325",
-  sql_file="a11y_overall_tech_usage_by_domain_rank.sql"
+  sql_file="a11y_technology_usage_by_domain_rank.sql"
 ) }}
 
 When considering domain rank, the top 1,000 websites have a lower percentage —0.1%— of overlay usage. However, considering the reach of these top-ranking sites, the potential impact of even one website with this much traffic using an overlay is very substantial.
@@ -771,7 +771,7 @@ When considering domain rank, the top 1,000 websites have a lower percentage —
   description="A bar chart showing that for the top 1,000 sites, 0.1% on desktop and 0.1% on mobile use and accessibility app, for the top 10,000 it's 0.6% and 0.5% respectively, for the top 100,000 it's 0.8% and 0.7%, for the top million it's 0.9% and 0.8%, and finally for all sites 1.0% it's 0.8%.",
   chart_url="https://docs.google.com/spreadsheets/d/e/2PACX-1vQf4cxIC7ywDV-K2RpfaTeCYI4URyJE1air8BCAxoOw7VW9MjGRQfwHuILvhw-6UmcWnsrAJ0-1TTD_/pubchart?oid=851935325&format=interactive",
   sheets_gid="827309922",
-  sql_file="a11y_technology_usage_by_domain_rank.sql"
+  sql_file="a11y_overall_tech_usage_by_domain_rank.sql"
 ) }}
 
 ### The consequences of overlays

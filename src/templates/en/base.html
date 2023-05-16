@@ -83,13 +83,20 @@ Our mission is to combine the raw stats and trends of the HTTP Archive with the 
 {% block reviewed_and_analyzed_by_after %}{% endblock %}
 {% block analysis_and_editing_by_after %}{% endblock %}
 
+{% block date_published %}Date published: {% endblock %}
+{% block date_updated %}Last updated: {% endblock %}
+
 {% block unedited %}[Unedited]{% endblock %}
 
 {% block author %}Author{% endblock %}
 {% block authors %}Authors{% endblock %}
 
-{% block reactions %}Reactions{% endblock %}
+{% block reaction %}reaction{% endblock %}
+{% block reactions %}reactions{% endblock %}
+{% block reactionsTitle %}Reactions{% endblock %}
+{% block reactionsAlt %}{% endblock %}
 {% block source %}View source{% endblock %}
+{% block share %}Share{% endblock %}
 
 {% block like %}like{% endblock %}
 {% block repost %}repost{% endblock %}
@@ -117,7 +124,7 @@ Our mission is to combine the raw stats and trends of the HTTP Archive with the 
 {% block rss_feed %}RSS Feed{% endblock %}
 
 {% block featured_chapter %}Featured Chapter{% endblock %}
-{% block featured_chapter_last_year %}Featured Chapter<br/>from the {{ year|int -1 }} Web Almanac{% endblock %}
+{% block featured_chapter_last_year %}Featured Chapter<br>from the {{ year|int -1 }} Web Almanac{% endblock %}
 
 {# Check if read_chapter already defined in child template as macros can't be overridden #}
 {% if not read_chapter %}
@@ -188,7 +195,9 @@ Unless otherwise noted, the metrics in all of the {{ supported_chapters | length
     "capabilities": "Capabilities",
     "jamstack": "Jamstack",
     "webassembly": "WebAssembly",
-    "structured-data": "Structured Data"
+    "structured-data": "Structured Data",
+    "sustainability": "Sustainability",
+    "interop": "Interoperability"
   }
 %}
 {% if (year == "2019" or year == "2020") %}

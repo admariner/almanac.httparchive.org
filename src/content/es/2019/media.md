@@ -266,7 +266,7 @@ El método más usado para implementar las imágenes <i lang="en">responsive</i>
   )
 }}
 
-No es sorprendente el notable menor uso del `<picture>` ya que se usan más a menudo para el diseño web <i lang="en">responsive</i> (RWD, siglas del inglés <i lang="en">responsive web design</i>) avanzado como el de [dirección de arte](https://developer.mozilla.org/es/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#Art_direction).
+No es sorprendente el notable menor uso del `<picture>` ya que se usan más a menudo para el diseño web <i lang="en">responsive</i> (RWD, siglas del inglés <i lang="en">responsive web design</i>) avanzado como el de [dirección de arte](https://developer.mozilla.org/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#Art_direction).
 
 ### Uso de sizes
 
@@ -329,7 +329,7 @@ La utilidad de `srcset` normalmente depende de la precisión de la media query `
 
 ### <i lang="en">Client Hints</i> {client-hints}
 
-Los <i lang="en"><a hreflang="en" href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/client-hints">Client Hints</a></i> permiten a los creadores de contenido cambiar el redimensionamiento de imágenes por la negociación de contenido HTTP. De este modo, el HTML no necesita de `<img srcset>` adicionales para reordenar el marcado, y en su lugar depende de un servidor o <a hreflang="en" href="https://cloudinary.com/blog/client_hints_and_responsive_images_what_changed_in_chrome_67">imagen CDN para elegir la imagen óptima</a> en cada contexto. Esto permite simplificar el HTML y habilita a los servidores de origen para adaptar y desconectar el contenido y las capas de presentación.
+Los <i lang="en"><a hreflang="en" href="https://web.dev/user-agent-client-hints/">Client Hints</a></i> permiten a los creadores de contenido cambiar el redimensionamiento de imágenes por la negociación de contenido HTTP. De este modo, el HTML no necesita de `<img srcset>` adicionales para reordenar el marcado, y en su lugar depende de un servidor o <a hreflang="en" href="https://cloudinary.com/blog/client_hints_and_responsive_images_what_changed_in_chrome_67">imagen CDN para elegir la imagen óptima</a> en cada contexto. Esto permite simplificar el HTML y habilita a los servidores de origen para adaptar y desconectar el contenido y las capas de presentación.
 
 Para habilitar los <i lang="en">Client Hints</i>, la página web debe señalizárselo al navegador usando bien un encabezado HTTP adicional `Accept-CH: DPR, Width, Viewport-Width` _o bien_ añadiendo el HTML `<meta http-equiv="Accept-CH" content="DPR, Width, Viewport-Width">`. La conveniencia de usar una u otra técnica depende del equipo que las esté implementando, ambas se ofrecen por conveniencia.
 
@@ -359,6 +359,7 @@ Los <i lang="en">Client Hints</i> relacionados con la red, `downlink`, `rtt`, y 
 
 Mejorar el rendimiento de una página web puede ser parcialmente descrito como un juego de ilusiones; moviendo las cosas más lentas fuera de banda y lejos de la vista del usuario. De este modo, el <i lang="en">lazy loading</i> de imágenes es una de esas ilusiones donde la imagen y el contenido multimedia solamente se cargan cuando el usuario se desplaza por la página. Esto mejora el rendimiento que se percibe, incluso en conexiones lentas, y evita al usuario la descarga de bytes que no van a estar visibles.
 
+<!-- markdownlint-disable-next-line MD051 -->
 Anteriormente, en la [Figura 4.5](#fig-5), mostramos como el volumen del contenido de imagen en el percentil 75 es bastante más de lo que, en principio, puede verse en una sola ventana de escritorio o móvil. La auditoría <i lang="en">Lighthouse</i> de <a hreflang="en" href="https://developers.google.com/web/tools/lighthouse/audits/offscreen-images">imágenes fuera de pantalla</a> confirma nuestras sospechas. La página web media tiene un 27% de contenido de imagen significativamente por debajo del borde. Esto aumenta hasta el 84% en el percentil 90.
 
 {{ figure_markup(

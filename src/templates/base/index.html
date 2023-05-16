@@ -41,7 +41,6 @@
 {% block styles %}
   {{ super() }}
   <link rel="stylesheet" href="{{ get_versioned_filename('/static/css/index.css') }}">
-  <link rel="preload" href="{{ get_versioned_filename('/static/css/index.css') }}" as="style" />
   <link rel="preload" href="/static/fonts/Poppins-Light.woff2" as="font" type="font/woff2" crossorigin>
 {% endblock %}
 
@@ -68,16 +67,20 @@
       {% endif %}
     </div>
     <div class="intro-image-wrapper">
-      {% if year != "2020" %}
+      {% if year == "2022" %}
+      <svg viewBox="0 0 56 16">
+        <text x="9" y="15">{{ year }}</text>
+      </svg>
+      {% elif year != "2020" %}
       <svg viewBox="0 0 50 16">
         <text x="8" y="15">{{ year }}</text>
       </svg>
       {% else %}
-      <svg viewBox="0 0 56 16">
-        <text x="8" y="15">{{ year }}</text>
+      <svg viewBox="0 0 57 16">
+        <text x="9" y="15">{{ year }}</text>
       </svg>
       {% endif %}
-      <img src="/static/images/home-hero.png" alt="" width="820" height="562">
+      <img src="/static/images/home-hero.png" alt="" width="820" height="562" fetchpriority="high">
     </div>
   </section>
   {% block featured_chapter_section %}
@@ -177,9 +180,9 @@
       </div>
       <div class="people" aria-hidden="true">
         <div class="people-number">{{ self.contributors() }}</div>
-        <img id="character-markup" class="character" src="/static/images/character-markup.png" alt="" width="154" height="252" loading="lazy" />
-        <img id="character-star" class="character" src="/static/images/character-star.png" alt="" width="245" height="254" loading="lazy" />
-        <img id="character-hat" class="character" src="/static/images/character-hat.png" alt="" width="186" height="207" loading="lazy" />
+        <img id="character-markup" class="character" src="/static/images/character-markup.png" alt="" width="154" height="252" loading="lazy">
+        <img id="character-star" class="character" src="/static/images/character-star.png" alt="" width="245" height="254" loading="lazy">
+        <img id="character-hat" class="character" src="/static/images/character-hat.png" alt="" width="186" height="207" loading="lazy">
       </div>
     </div>
   </section>
@@ -212,7 +215,7 @@
         {{ self.methodology_link() }}
       </a>
       {% endif %}
-      <img class="methodology-characters" src="/static/images/methodology-characters.png" alt="" width="984" height="354" loading="lazy" />
+      <img class="methodology-characters" src="/static/images/methodology-characters.png" alt="" width="984" height="354" loading="lazy">
     </div>
   </section>
   {% endif %}

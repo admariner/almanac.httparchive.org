@@ -301,7 +301,7 @@ First Contentful Paint（FCP）は、ブラウザがテキスト、画像、非�
 
 他の指標と同様に、FCPは接続速度に影響されます。3Gでは、良いと評価している体験者は2％しかいませんが、4Gでは31％となっています。FCPのパフォーマンスは理想的な状態ではありませんが、[2019年から改善されている](../2019/performance#fcp-by-effective-connection-type)部分もあり、これもやはり良いと悪いのカテゴライズを変えたことが影響しているのかもしれません。良いウェブサイトと悪いウェブサイトの割合が同じように上昇し、中程度（「改善が必要」）のサイト体験の数を狭めていることがわかります。
 
-この傾向は、デジタルデバイドの拡大を示しており、遅いネットワークや潜在的に性能の低いデバイスでの体験は一貫して悪化しています。低速回線でのFCPの改善は、TTFBの改善に直結します。これは、[接続タイプ別TTFBパフォーマンス集計表](#ttfb-by-connection-type)でも確認できます。
+この傾向は、デジタルデバイドの拡大を示しており、遅いネットワークや潜在的に性能の低いデバイスでの体験は一貫して悪化しています。低速回線でのFCPの改善は、TTFBの改善に直結します。これは、[接続タイプ別TTFBパフォーマンス集計表](#接続タイプ別のttfb)でも確認できます。
 
 <a hreflang="en" href="https://ismyhostfastyet.com/">ホスティングプロバイダー</a>や<a hreflang="en" href="https://www.cdnperf.com/">CDN</a>の選択は、速度に連鎖的な影響を与えます。最速の配信に基づいてこれらの決定を行うことは、とくに低速のネットワークでは、FCPとTTFBの改善に役立ちます。FCPはフォントの読み込み時間にも大きく影響されるため、<a hreflang="en" href="https://web.dev/font-display/">Webフォントのダウンロード中にテキストが表示されるようにする</a>ことも価値のある戦略です（とくに、低速の接続ではこれらのリソースを取得するのにコストがかかる場合）。
 
@@ -361,7 +361,7 @@ TTFBは、ネットワークのレイテンシーと接続タイプの影響を�
 
 ## パフォーマンス・オブザーバーの使い方
 
-Webサイトやアプリケーションの評価に使用できるユーザー中心の評価基準は、何十種類もあります。しかし、事前に定義された評価基準は、私たちの特定のシナリオやニーズにまったく合わないことがあります。[PerformanceObserver API](https://developer.mozilla.org/ja/docs/Web/API/PerformanceObserver)では、[User Timing API](https://developer.mozilla.org/ja/docs/Web/API/User_Timing_API)、[Long Task API](https://developer.mozilla.org/ja/docs/Web/API/Long_Tasks_API)、<a hreflang="ja" href="https://web.dev/i18n/ja/custom-metrics/#event-timing-api">Event Timing API</a>や<a hreflang="ja" href="https://web.dev/i18n/ja/custom-metrics/">その他のいくつかの低レベルAPI</a>で得られたカスタムメトリックデータを取得できます。たとえば、彼らの協力を得て、ページ間の遷移のタイミングを記録したり、SSR（Server-Side-rendered）アプリケーションの水和を数値化したりすることができました。
+Webサイトやアプリケーションの評価に使用できるユーザー中心の評価基準は、何十種類もあります。しかし、事前に定義された評価基準は、私たちの特定のシナリオやニーズにまったく合わないことがあります。[PerformanceObserver API](https://developer.mozilla.org/docs/Web/API/PerformanceObserver)では、[User Timing API](https://developer.mozilla.org/docs/Web/API/User_Timing_API)、[Long Task API](https://developer.mozilla.org/docs/Web/API/Long_Tasks_API)、<a hreflang="ja" href="https://web.dev/i18n/ja/custom-metrics/#event-timing-api">Event Timing API</a>や<a hreflang="ja" href="https://web.dev/i18n/ja/custom-metrics/">その他のいくつかの低レベルAPI</a>で得られたカスタムメトリックデータを取得できます。たとえば、彼らの協力を得て、ページ間の遷移のタイミングを記録したり、SSR（Server-Side-rendered）アプリケーションの水和を数値化したりすることができました。
 
 {{ figure_markup(
   image="performance-performance-observer-usage.png",

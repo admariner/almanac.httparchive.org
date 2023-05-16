@@ -9,7 +9,6 @@ from .config import (
     SUPPORTED_CHAPTERS,
 )
 from .language import get_language, DEFAULT_LANGUAGE
-from werkzeug.routing import BaseConverter
 import os.path
 import re
 import datetime
@@ -31,7 +30,11 @@ def render_template(template, *args, **kwargs):
     # If the template does not exist, then redirect to English version if it exists, else home
     if lang != "" and not (os.path.isfile(TEMPLATES_DIR + "/%s" % template)):
         if os.path.isfile(TEMPLATES_DIR + "/en/%s" % (template[langcode_length:])):
-            return redirect("/en%s" % (request.full_path[langcode_length:]), code=302)
+            # Strip empty query string if full_path returns this
+            path = request.full_path[langcode_length:]
+            if path[-1] == "?":
+                path = path[:-1]
+            return redirect("/en%s" % path, code=302)
         else:
             return redirect(url_for("home", lang=lang, year=year))
 
@@ -124,6 +127,15 @@ def render_error_template(error, status_code):
 def chapter_lang_exists(lang, year, chapter):
     if os.path.isfile(
         TEMPLATES_DIR + "/%s/%s/chapters/%s.html" % (lang, year, chapter)
+    ):
+        return True
+    else:
+        return False
+
+
+def page_lang_exists(lang, year, page):
+    if os.path.isfile(
+        TEMPLATES_DIR + "/%s/%s/%s.html" % (lang, year, page)
     ):
         return True
     else:
@@ -279,7 +291,7 @@ def accentless_sort(value):
 def get_file_date_info(file, type):
     timestamps_config = get_timestamps_config()
     # Default Published and Last Updated to today
-    today = datetime.datetime.utcnow().isoformat()
+    today = datetime.datetime.utcnow().isoformat(timespec='milliseconds')
     if type == "date_published" or type == "date_modified":
         return timestamps_config.get(file, {}).get(type, today)
     else:
@@ -310,9 +322,3 @@ def plural_ru(value, quantitative):
     if value % 10 in (2, 3, 4):
         return quantitative[1]
     return quantitative[2]
-
-
-class RegexConverter(BaseConverter):
-    def __init__(self, url_map, *items):
-        super(RegexConverter, self).__init__(url_map)
-        self.regex = items[0]

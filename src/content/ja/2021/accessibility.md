@@ -104,11 +104,11 @@ Webアクセシビリティの重要な要素として、コンテンツを可�
 ### 言語の識別
 
 {{ figure_markup(
-  caption="デスクトップサイトでは、有効な `lang` 属性があります。",
+  caption="モバイルサイトでは、有効な `lang` 属性があります。",
   content="80.5%",
   classes="big-number",
   sheets_gid="2009310389",
-  sql_file="common_html_lang_attrib.sql"
+  sql_file="valid_html_lang.sql"
 )
 }}
 
@@ -116,7 +116,7 @@ HTMLの `lang` 属性を設定することで、ページの翻訳が容易に�
 
 ### 文字サイズと行の高さ
 
-最小フォントサイズや行の高さに関しては、WCAGからの具体的な要求はありません。しかし、<a hreflang="en" href="https://accessibility.digital.gov/visual-design/typography/">基本のフォントサイズを16px</a>以上にすれば、誰もが読みやすくなるというのが一般的な見解です。とくに弱視の方。 ただし、[テキストを200%まで拡大・縮小できる](#zooming-and-scaling)という要件があります。また、ユーザーはブラウザレベルで独自の最小フォントサイズを設定することができ、これらのカスタマイズ設定にも対応する必要があります。
+最小フォントサイズや行の高さに関しては、WCAGからの具体的な要求はありません。しかし、<a hreflang="en" href="https://accessibility.digital.gov/visual-design/typography/">基本のフォントサイズを16px</a>以上にすれば、誰もが読みやすくなるというのが一般的な見解です。とくに弱視の方。 ただし、[テキストを200%まで拡大・縮小できる](#ズームとスケーリング)という要件があります。また、ユーザーはブラウザレベルで独自の最小フォントサイズを設定することができ、これらのカスタマイズ設定にも対応する必要があります。
 
 {{ figure_markup(
   image="pages-overriding-focus-styles.png",
@@ -138,7 +138,7 @@ HTMLの `lang` 属性を設定することで、ページの翻訳が容易に�
   caption="フォーカススタイルをオーバーライドするページ。",
   description="デスクトップサイトの92.6%、モバイルサイトの94.1%が `:focus` 擬似クラスを使用しており、デスクトップサイトの90.0%、モバイルサイトの91.0%がその `:focus` 擬似クラスを使ってアウトラインを0またはゼロに設定しているという棒グラフです。デスクトップサイトの0.6%、モバイルサイトの0.6%は `:focus-visible` 疑似クラスを使用しています。",
   chart_url="https://docs.google.com/spreadsheets/d/e/2PACX-1vQf4cxIC7ywDV-K2RpfaTeCYI4URyJE1air8BCAxoOw7VW9MjGRQfwHuILvhw-6UmcWnsrAJ0-1TTD_/pubchart?oid=1277337070&format=interactive",
-  sheets_gid="1027210289",
+  sheets_gid="1517955087",
   sql_file="../css/focus_outline_0.sql"
 ) }}
 
@@ -159,13 +159,13 @@ HTMLの `lang` 属性を設定することで、ページの翻訳が容易に�
   sql_file="../css/media_query_features.sql"
 ) }}
 
-[`prefers-reduced-motion`](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-reduced-motion) は、ウェブ制作者がウェブページ上のアニメーションやその他の動きのあるソースを通常はコンテンツを削除したり、置き換えたりして、より静的な体験へ置き換えるために使用します。 これは、画面上の速い動きによって注意力が散漫になったり、その他の誘因を受けたりするさまざまな人々を助けることができます。32%のウェブサイトが `prefers-reduced-motion` メディアクエリを使用していることがわかりました。
+[`prefers-reduced-motion`](https://developer.mozilla.org/docs/Web/CSS/@media/prefers-reduced-motion) は、ウェブ制作者がウェブページ上のアニメーションやその他の動きのあるソースを通常はコンテンツを削除したり、置き換えたりして、より静的な体験へ置き換えるために使用します。 これは、画面上の速い動きによって注意力が散漫になったり、その他の誘因を受けたりするさまざまな人々を助けることができます。32%のウェブサイトが `prefers-reduced-motion` メディアクエリを使用していることがわかりました。
 
 `prefers-reduced-transparency` は、エンドユーザーがオペレーティングシステムに半透明や透明効果を最小化または除去するように依頼したことを示します。このアフォーダンスは、エンドユーザーが読解を助けるため、あるいは視覚障害のあるユーザーに悪影響を与える可能性のある一般的な「ハロー効果」を避けるためオンにされるかもしれません。この比較的新しいメディアクエリの使用に関するデータはありません。
 
-[`prefers-contrast`](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-contrast) (`high` または `low`) は、エンドユーザーが [ハイコントラストかローコントラスト](#color-contrast) のコントラストテーマを好むことを示唆します。読解力や眼精疲労に効果が期待できます。この比較的新しいメディアクエリの使用に関するデータはありませんが、25%のウェブサイトが[`ms-high-contrast`](https://developer.mozilla.org/ja/docs/Web/CSS/@media/-ms-high-contrast)を使用しており、Windows特有のコントラスト優先の処理方法であることがわかっています。
+[`prefers-contrast`](https://developer.mozilla.org/docs/Web/CSS/@media/prefers-contrast) (`high` または `low`) は、エンドユーザーが [ハイコントラストかローコントラスト](#カラーコントラスト) のコントラストテーマを好むことを示唆します。読解力や眼精疲労に効果が期待できます。この比較的新しいメディアクエリの使用に関するデータはありませんが、25%のウェブサイトが[`ms-high-contrast`](https://developer.mozilla.org/docs/Web/CSS/@media/-ms-high-contrast)を使用しており、Windows特有のコントラスト優先の処理方法であることがわかっています。
 
-[`prefers-color-scheme`](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme) (`light` または `dark`) は、ユーザーが暗い背景の体験に明るい色を要求したり、その逆を行うことができるようにします。User Preference Media Queriesの中でもっとも早く導入されました。この機能は通称「ダークモード」対応と呼ばれ、2019年に<a hreflang="en" href="https://en.wikipedia.org/wiki/Light-on-dark_color_scheme#History">AppleがiOS 13とiPadOSで標準化</a>したことにより一躍有名になりましたが、それ以前からアクセシビリティ機能としては一般的な機能となっていました。
+[`prefers-color-scheme`](https://developer.mozilla.org/docs/Web/CSS/@media/prefers-color-scheme) (`light` または `dark`) は、ユーザーが暗い背景の体験に明るい色を要求したり、その逆を行うことができるようにします。User Preference Media Queriesの中でもっとも早く導入されました。この機能は通称「ダークモード」対応と呼ばれ、2019年に<a hreflang="en" href="https://en.wikipedia.org/wiki/Light-on-dark_color_scheme#History">AppleがiOS 13とiPadOSで標準化</a>したことにより一躍有名になりましたが、それ以前からアクセシビリティ機能としては一般的な機能となっていました。
 
 ダークモードはアクセシビリティのアフォーダンスとして多くの開発者やデザイナーに認識されていますが、実際には特定のユーザーにとってアクセシビリティを低下させる可能性があることに注意することが重要です。<a hreflang="en" href="https://www.boia.org/blog/dark-mode-can-improve-text-readability-but-not-for-everyone">失読症や乱視の人の中には、暗い背景に明るいテキストは読みにくく</a>、ハロー効果を悪化させると感じる人がいるかもしれません。ここで重要なことは、ユーザーに最適なものを選んでもらうことです。7%のウェブサイトが `prefers-color-scheme` メディアクエリを使用していることがわかりました。
 
@@ -175,19 +175,19 @@ HTMLの `lang` 属性を設定することで、ページの翻訳が容易に�
 
 ### ランドマークとページ構成
 
-ランドマークとは、HTMLの指定要素、または他のHTML要素に適用できるARIAの役割で、支援技術を必要とする障害者がページ全体の構造やナビゲーションをすばやく理解できるようにするためのものです。たとえば、<a hreflang="en" href="https://webaim.org/articles/voiceover/mobile#rotor">ローターメニュー</a>は、ページの異なるランドマークへ移動するために使うことができ、また[skip link](#skip-links) は `<main>` ランドマークへ移動するために使うことができます。
+ランドマークとは、HTMLの指定要素、または他のHTML要素に適用できるARIAの役割で、支援技術を必要とする障害者がページ全体の構造やナビゲーションをすばやく理解できるようにするためのものです。たとえば、<a hreflang="en" href="https://webaim.org/articles/voiceover/mobile#rotor">ローターメニュー</a>は、ページの異なるランドマークへ移動するために使うことができ、また[skip link](#リンクをスキップする) は `<main>` ランドマークへ移動するために使うことができます。
 
-HTML5導入以前は、これを実現するためにARIAのランドマークロールが必要でした。しかし、現在では、ランドマークページの構造の大部分を達成するために、ネイティブのHTML要素が利用できるようになっています。ネイティブのHTMLランドマーク要素を活用することは、ARIAロールを適用するよりも望ましいことです。<a hreflang="en" href="https://www.w3.org/TR/using-aria/#rule1">ARIAの最初の規則</a>に従います。詳しくは、この章の[ARIAロール](#ARIAロール)の節を参照してください。
+HTML5導入以前は、これを実現するためにARIAのランドマークロールが必要でした。しかし、現在では、ランドマークページの構造の大部分を達成するために、ネイティブのHTML要素が利用できるようになっています。ネイティブのHTMLランドマーク要素を活用することは、ARIAロールを適用するよりも望ましいことです。<a hreflang="en" href="https://www.w3.org/TR/using-aria/#rule1">ARIAの最初の規則</a>に従います。詳しくは、この章の[ARIAロール](#ariaロール)の節を参照してください。
 
 <figure>
   <table>
     <thead>
       <tr>
-        <th>HTML5 <br />要素</th>
-        <th>ARIAロール <br />と同じ</th>
-        <th>要素 <br />のあるページ</th>
-        <th>ロール <br />のあるページ</th>
-        <th>要素またはロール <br />のあるページ</th>
+        <th>HTML5 <br>要素</th>
+        <th>ARIAロール <br>と同じ</th>
+        <th>要素 <br>のあるページ</th>
+        <th>ロール <br>のあるページ</th>
+        <th>要素またはロール <br>のあるページ</th>
       </tr>
     </thead>
     <tbody>
@@ -301,7 +301,7 @@ HTML5導入以前は、これを実現するためにARIAのランドマーク�
   content="58%",
   classes="big-number",
   sheets_gid="461215072",
-  sql_file="???"
+  sql_file="lighthouse_a11y_audits.sql"
 )
 }}
 
@@ -369,7 +369,7 @@ HTML5導入以前は、これを実現するためにARIAのランドマーク�
 
 タブは非常に一般的なインターフェイスウィジェットですが、それをアクセシブルにすることは多くの開発者にとって課題となっています。アクセシブルな実装のための一般的なパターンは、<a hreflang="en" href="https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel">WAI-ARIAオーサリングプラクティスのデザインパターン</a> に由来しています。ARIAオーサリングプラクティス文書は仕様書ではなく、一般的なウィジェットに対するARIAの理想的な使い方を示すことを意図していることに注意してください。これらは、ユーザーによるテストなしに実運用で使用すべきではありません。
 
-オーサリングプラクティスのガイドラインでは、常に`tabpanel`ロールと`role="tab"`を組み合わせて使用することを推奨しています。デスクトップページの8％が `role="tablist"` を持つ要素を持ち、7％が `role="tab"` を持つ要素を持ち、6％が `role="tabpanel"` を持つ要素を持つことが分かっています。詳しくは、以下の[ARIAロール](#ARIAロール)の項をご覧ください。
+オーサリングプラクティスのガイドラインでは、常に`tabpanel`ロールと`role="tab"`を組み合わせて使用することを推奨しています。デスクトップページの8％が `role="tablist"` を持つ要素を持ち、7％が `role="tab"` を持つ要素を持ち、6％が `role="tabpanel"` を持つ要素を持つことが分かっています。詳しくは、以下の[ARIAロール](#ariaロール)の項をご覧ください。
 
 ### キャプチャ
 
@@ -392,7 +392,7 @@ Webサイトが、訪問者が人間であることを確認したい場合、We
 
 キャプチャには、アクセシビリティを阻害する可能性のあるものが多数存在します。たとえば、もっとも一般的なキャプチャの1つは、波打った歪んだテキストの画像を表示し、そのテキストを解読して入力するようユーザーに要求します。この種のテストは、誰にとっても解きにくいものですが、弱視やその他の視覚・読書関連の障害を持つ人にとっては、より困難なものになると思われます。<a hreflang="en" href="https://baymard.com/blog/captchas-in-checkout">あるユーザビリティ調査では、およそ3人に1人のユーザーがキャプチャの解読に失敗していることが分かっています</a>。
 
-もしキャプチャが[altテキスト](#overview-of-text-alternatives) を含んでいれば、答えはプレーンテキストとして提供されるので、コンピューターがテストをパスすることは些細なことでしょう。しかし、altテキストを含めないことで、キャプチャはスクリーンリーダーやそれを使用する視覚障害者を排除していることになります。
+もしキャプチャが[altテキスト](#代替テキストの概要) を含んでいれば、答えはプレーンテキストとして提供されるので、コンピューターがテストをパスすることは些細なことでしょう。しかし、altテキストを含めないことで、キャプチャはスクリーンリーダーやそれを使用する視覚障害者を排除していることになります。
 
 キャプチャがもたらすアクセシビリティの障壁については、W3Cの論文をオススメします。<a hreflang="en" href="https://www.w3.org/TR/turingtest/">「キャプチャにアクセスできない：Webでのビジュアルチューリングテストの代替案」</a>。
 
@@ -408,7 +408,7 @@ COVID-19の大流行の影響により、2021年には数百万人の子ども�
 
 ### `<label>` 要素
 
-HTMLフォームをアクセシブルにするもっとも重要な方法の1つは、`<label>`要素を使って、[フォームコントロール](https://developer.mozilla.org/ja/docs/Learn/Forms/Basic_native_form_controls)を説明する短い記述テキストをプログラムでリンクさせることです。これは通常、 `<label>` 要素の `for` 属性とフォームコントロール要素の `id` 属性をマッチングさせることで行われます。たとえば
+HTMLフォームをアクセシブルにするもっとも重要な方法の1つは、`<label>`要素を使って、[フォームコントロール](https://developer.mozilla.org/docs/Learn/Forms/Basic_native_form_controls)を説明する短い記述テキストをプログラムでリンクさせることです。これは通常、 `<label>` 要素の `for` 属性とフォームコントロール要素の `id` 属性をマッチングさせることで行われます。たとえば
 
 ```html
 <label for="first-name">First Name</label>
@@ -428,7 +428,7 @@ HTMLフォームをアクセシブルにするもっとも重要な方法の1つ
   height=537
 ) }}
 
-`<label>` 要素は、1999年のHTML4で導入されました。過去20年以上にわたってすべてのモダンブラウザで利用可能であるにもかかわらず、すべての `<input>` 要素のうち、プログラムによって関連付けられたラベルからアクセス可能な名前を得るのは27%のみで、32%の入力要素には [アクセス可能な名前](#labelling and-describing-elements-with-aria) がまったくありません。
+`<label>` 要素は、1999年のHTML4で導入されました。過去20年以上にわたってすべてのモダンブラウザで利用可能であるにもかかわらず、すべての `<input>` 要素のうち、プログラムによって関連付けられたラベルからアクセス可能な名前を得るのは27%のみで、32%の入力要素には [アクセス可能な名前](#ariaによる要素のラベリングと説明) がまったくありません。
 
 もっとも重要なことは適切なアクセス可能な名前がないと、スクリーン・リーダーや音声合成の利用者が、フォーム・フィールドの目的を狙ったり、特定したりできない可能性があることです。入力に関連する `<label>` 要素は、これを行うためのもっとも強固で期待できる方法です。
 
@@ -464,9 +464,9 @@ HTMLフォームをアクセシブルにするもっとも重要な方法の1つ
 
 ウェブ開発者がエンドユーザーから情報を収集する場合、どの情報がオプションで、どの情報が必要なのかを明確に示す必要があります。たとえば、エンドユーザーがオンラインで何かをダウンロード購入する場合、配送先の住所は任意です。しかし、支払い方法は、販売を完了するために必要である可能性が高いです。
 
-2014年にHTML5が`<input>`フィールドに[`required`属性](https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/required)を導入する以前は、Web開発者はこの問題をアドホックにケースバイケースで解決することを余儀なくされました。一般的な慣例は、必須入力フィールドのラベルにアスタリスク（`*`）を付けることです。これは純粋に視覚的、様式的な慣習であり、アスタリスクの付いたラベルはいかなる種類のフィールド検証を強制するものではありません。さらに、スクリーン・リーダーは、この文字が明示的に支援技術から隠されていない限り、通常「星」とアナウンスするので、混乱することがあります。
+2014年にHTML5が`<input>`フィールドに[`required`属性](https://developer.mozilla.org/docs/Web/HTML/Attributes/required)を導入する以前は、Web開発者はこの問題をアドホックにケースバイケースで解決することを余儀なくされました。一般的な慣例は、必須入力フィールドのラベルにアスタリスク（`*`）を付けることです。これは純粋に視覚的、様式的な慣習であり、アスタリスクの付いたラベルはいかなる種類のフィールド検証を強制するものではありません。さらに、スクリーン・リーダーは、この文字が明示的に支援技術から隠されていない限り、通常「星」とアナウンスするので、混乱することがあります。
 
-フォームフィールドの必要な状態を支援技術に伝えるため使用できる属性は2つあります。`required` 属性は、ほとんどのスクリーンリーダーによって通知され、必須フィールドが適切に記入されていない場合、実際にはフォームの送信を阻止します。[`aria-required`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-required_attribute)属性は、支援技術に必須フィールドを示すために使用できますが、フォーム送信を妨害するような関連した動作は付属していません。
+フォームフィールドの必要な状態を支援技術に伝えるため使用できる属性は2つあります。`required` 属性は、ほとんどのスクリーンリーダーによって通知され、必須フィールドが適切に記入されていない場合、実際にはフォームの送信を阻止します。[`aria-required`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-required_attribute)属性は、支援技術に必須フィールドを示すために使用できますが、フォーム送信を妨害するような関連した動作は付属していません。
 
 {{ figure_markup(
   image="form-required-controls.png",
@@ -544,7 +544,7 @@ HTML5仕様では、2014年に `<video>` と `<audio>` 要素が導入され、�
 
 #### 音声
 
-[`<track>`](https://developer.mozilla.org/ja/docs/Web/HTML/Element/track) は、`<audio>` と `<video>` 要素の音声と同等のテキストの方法を提供します。これにより、永久的または一時的な難聴の方でも、音声コンテンツを理解できます。
+[`<track>`](https://developer.mozilla.org/docs/Web/HTML/Element/track) は、`<audio>` と `<video>` 要素の音声と同等のテキストの方法を提供します。これにより、永久的または一時的な難聴の方でも、音声コンテンツを理解できます。
 
 {{ figure_markup(
   caption="デスクトップの `<audio>` 要素には、少なくとも1つの `<track>` 要素が付随しています。",
@@ -567,8 +567,8 @@ HTML5仕様では、2014年に `<video>` と `<audio>` 要素が導入され、�
   caption="`<video>` 要素を持つデスクトップWebサイトには、少なくとも1つの `<track>` 要素が付随しています。",
   content="0.5%",
   classes="big-number",
-  sheets_gid="1198212185",
-  sql_file="audio_track_usage.sql"
+  sheets_gid="1261793459",
+  sql_file="video_track_usage.sql"
 )
 }}
 
@@ -590,7 +590,7 @@ ARIAの使用には多くのニュアンスと複雑さがあり、また支援�
 
 HTML5では多くの新しいネイティブ要素が導入されましたが、それらはすべて <a hreflang="en" href="https://www.w3.org/TR/wai-aria-1.1/#implicit_semantics">暗黙的意味論</a> を持ち、ロールも含まれます。たとえば、`<nav>` 要素は暗黙のうちに `role="navigation"` を持っており、支援技術に目的情報を伝えるために、ARIAを介してこの役割を明示的に追加する必要はないのです。
 
-ARIAを使用すると、適合するネイティブなHTMLロールを持たないコンテンツに、明示的にロールを追加できます。たとえば、[`tablist`](#tabindex) ウィジェットを作成する場合、コンテナー要素に `tablist` というロールを割り当てることができます。
+ARIAを使用すると、適合するネイティブなHTMLロールを持たないコンテンツに、明示的にロールを追加できます。たとえば、[`tablist`](#タブインデックス) ウィジェットを作成する場合、コンテナー要素に `tablist` というロールを割り当てることができます。
 
 {{ figure_markup(
   image="sites-using-role.png",
@@ -626,14 +626,14 @@ ARIAロールのもっとも一般的な誤用の1つは、 `<div>`や `<span>`�
 
 {{ figure_markup(
   caption="デスクトップのWebサイトには、少なくとも1つのボタンの役割を持つリンクがあります。",
-  content="17.5%",
+  content="18.6%",
   classes="big-number",
   sheets_gid="1014817325",
   sql_file="anchors_with_role_button.sql"
 )
 }}
 
-デスクトップページの18％（2020年の16％から増加）、モバイルページの19％（2020年の15％から増加）に `role="button"` のアンカー要素が少なくとも1つ含まれていることがわかりました。ネイティブの `<button>` 要素の方が、<a hreflang="en" href="https://www.w3.org/TR/using-aria/#rule1">ARIAの最初の規則</a>にしたがって、より良い選択でしょう。
+デスクトップページの19％（2020年の16％から増加）、モバイルページの18％（2020年の15％から増加）に `role="button"` のアンカー要素が少なくとも1つ含まれていることがわかりました。ネイティブの `<button>` 要素の方が、<a hreflang="en" href="https://www.w3.org/TR/using-aria/#rule1">ARIAの最初の規則</a>にしたがって、より良い選択でしょう。
 
 このARIAロールを追加する行為、つまり<a hreflang="en" href="https://adrianroselli.com/2020/02/role-up.html">"role-up"</a>は、通常、正しいネイティブHTML要素を使用するより理想的ではありません。繰り返しますが、これらのケースの大部分では、問題の要素に明示的に `role="button"` を定義するよりも、ネイティブのHTML`<button>` 要素を活用する方が良いパターンでしょう。
 
@@ -645,11 +645,11 @@ ARIAロールのもっとも一般的な誤用の1つは、 `<div>`や `<span>`�
 
 ### ARIAによる要素のラベリングと説明
 
-DOMと平行して、[アクセシビリティツリー](https://developer.mozilla.org/ja/docs/Glossary/Accessibility_tree)と呼ばれる同様のブラウザ構造があります。これには、アクセシブルな名前、説明、役割、状態など、HTML要素に関する情報が含まれています。この情報は、アクセシビリティAPIを通じて支援技術に伝達されます。
+DOMと平行して、[アクセシビリティツリー](https://developer.mozilla.org/docs/Glossary/Accessibility_tree)と呼ばれる同様のブラウザ構造があります。これには、アクセシブルな名前、説明、役割、状態など、HTML要素に関する情報が含まれています。この情報は、アクセシビリティAPIを通じて支援技術に伝達されます。
 
 アクセシビリティツリーには、コントロール、ウィジェット、グループ、ランドマークに対して、アクセシブルネーム（ある場合）を割り当て、支援技術によって告知またはターゲット化できるようにする計算システムがあります。
 
-アクセス可能な名前は、要素のコンテンツ（ボタンのテキストなど）、属性（画像の `alt` テキスト値など）、関連付けられた要素（プログラム的に関連付けられた [フォームコントロールの `label`](#the-label-element) など）から得ることができます。複数の候補がある場合、アクセス可能な名前にどの値を割り当てるかを決定するために起こる特異性の順位付けがあります。
+アクセス可能な名前は、要素のコンテンツ（ボタンのテキストなど）、属性（画像の `alt` テキスト値など）、関連付けられた要素（プログラム的に関連付けられた [フォームコントロールの `label`](#label-要素) など）から得ることができます。複数の候補がある場合、アクセス可能な名前にどの値を割り当てるかを決定するために起こる特異性の順位付けがあります。
 
 アクセシブルネームについての詳細は、[Léonie Watson](https://twitter.com/LeonieWatson) の記事、<a hreflang="en" href="https://developer.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/">アクセシブルネームとは何ですか？</a> をご覧ください。
 
@@ -731,7 +731,7 @@ DOMと平行して、[アクセシビリティツリー](https://developer.mozil
 
 DOMに新しいコンテンツや更新されたコンテンツがある場合、スクリーン・リーダーに伝える必要があります。フラストレーションを避けるために、どの更新を伝える必要があるかについて、ある程度考慮する必要があります。たとえば、フォームの検証エラーは伝える必要がありますが、遅延ロードされた画像は伝える必要がないかもしれません。DOMの更新は、混乱を招かない方法で行われる必要があります。
 
-_ARIAライブリージョン_は、DOMの変更を監視し、スクリーンリーダーで更新されたコンテンツを知らせることができます。デスクトップページの21％（2020年の17％から増加）、モバイルページの20％（2020年の16％から増加）がライブリージョンを持っていることがわかりました。ライブリージョンバリアントや使い方についての詳しい情報は [ARIAライブリージョン](https://developer.mozilla.org/ja/docs/Web/Accessibility/ARIA/ARIA_Live_Regions) をチェックするか、この <a hreflang="en" href="https://dequeuniversity.com/library/aria/liveregion-playground">Dequeによるライブデモ</a>で遊んでみてください。
+_ARIAライブリージョン_は、DOMの変更を監視し、スクリーンリーダーで更新されたコンテンツを知らせることができます。デスクトップページの21％（2020年の17％から増加）、モバイルページの20％（2020年の16％から増加）がライブリージョンを持っていることがわかりました。ライブリージョンバリアントや使い方についての詳しい情報は [ARIAライブリージョン](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/ARIA_Live_Regions) をチェックするか、この <a hreflang="en" href="https://dequeuniversity.com/library/aria/liveregion-playground">Dequeによるライブデモ</a>で遊んでみてください。
 
 ## アクセシビリティオーバーレイ
 
@@ -760,7 +760,7 @@ _ARIAライブリージョン_は、DOMの変更を監視し、スクリーン�
   description="デスクトップサイトでもっとも人気のあるアクセシビリティ・アプリのドメインランク別の利用状況を示す棒グラフです。AccessiBeは上位1,000サイトでは利用されていないが、上位10,000サイトでは0.15%、上位100,000サイトが0.39%、上位100万サイトは0.37%、全サイトで0.27%利用されていることがわかる。AudioEyeは、それぞれ0.13%、0.20%、0.13%、0.16%、0.24%で使用されています。EqualWebは、上位1,000サイトや上位10,000サイトでは使用されていませんが、上位10万サイトの0.02％、上位100万サイトの0.03％、全サイトの0.02％で使用されています。 テキストヘルプも同様に、上位1,000サイトや上位10,000サイトでは使用されていませんが、上位10万サイトの0.02％、上位100万サイトの0.04％、全サイトの0.02％で使用されています。最後に、UserWayは上位1,000サイトでは使用されていないが、上位1万サイトの0.04%、上位10万サイトの0.09%、上位100万サイトの0.24%、全サイトの0.39%で使用されている。AudioEyeのみ、上位1,000サイトで使用されています。",
   chart_url="https://docs.google.com/spreadsheets/d/e/2PACX-1vQf4cxIC7ywDV-K2RpfaTeCYI4URyJE1air8BCAxoOw7VW9MjGRQfwHuILvhw-6UmcWnsrAJ0-1TTD_/pubchart?oid=473077851&format=interactive",
   sheets_gid="2077755325",
-  sql_file="a11y_overall_tech_usage_by_domain_rank.sql"
+  sql_file="a11y_technology_usage_by_domain_rank.sql"
 ) }}
 
 ドメインランクを考慮すると、上位1,000サイトのオーバーレイ使用率は0.1%と低くなっています。しかし、これらの上位サイトのリーチを考慮すると、これだけのトラフィックを持つ1つのWebサイトがオーバーレイを使用した場合の潜在的な影響は非常に大きなものです。
@@ -771,7 +771,7 @@ _ARIAライブリージョン_は、DOMの変更を監視し、スクリーン�
   description="上位1,000サイトではデスクトップで0.1%、モバイル利用とアクセシビリティアプリで0.1%、上位1万サイトではそれぞれ0.6%、0.5%、上位10万サイトは0.8%、0.7%、上位100万サイトで0.9%、0.8%、最後にすべてのサイトで1%、0.8%となっており、棒グラフが示されています。",
   chart_url="https://docs.google.com/spreadsheets/d/e/2PACX-1vQf4cxIC7ywDV-K2RpfaTeCYI4URyJE1air8BCAxoOw7VW9MjGRQfwHuILvhw-6UmcWnsrAJ0-1TTD_/pubchart?oid=851935325&format=interactive",
   sheets_gid="827309922",
-  sql_file="a11y_technology_usage_by_domain_rank.sql"
+  sql_file="a11y_overall_tech_usage_by_domain_rank.sql"
 ) }}
 
 ### オーバーレイのもたらすもの

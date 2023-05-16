@@ -266,7 +266,7 @@ La méthode la plus courante pour implémenter des images adaptatives est de con
   )
 }}
 
-L’utilisation nettement plus faible de `<picture>` n’est pas surprenante dans la mesure où cet élément est le plus souvent utilisé pour des gabarits adaptatifs avancés en termes de [direction artistique](https://developer.mozilla.org/fr/docs/Apprendre/HTML/Comment/Ajouter_des_images_adaptatives_%C3%A0_une_page_web#D%C3%A9cision_de_nature_artistique).
+L’utilisation nettement plus faible de `<picture>` n’est pas surprenante dans la mesure où cet élément est le plus souvent utilisé pour des gabarits adaptatifs avancés en termes de [direction artistique](https://developer.mozilla.org/docs/Apprendre/HTML/Comment/Ajouter_des_images_adaptatives_%C3%A0_une_page_web#D%C3%A9cision_de_nature_artistique).
 
 ### Utilisation de sizes
 
@@ -329,7 +329,7 @@ L’utilité de `srcset` dépend généralement de la précision de la requête 
 
 ### Indications Client
 
-Les Indications Client, ou <a hreflang="en" href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/client-hints"><span lang="en">Client Hints</span></a> permettent aux créateurs et créatrices de contenus de déplacer le redimensionnement des images vers la négociation de contenu HTTP. De cette manière, vous n’avez pas besoin de surcharger votre balisage HTML avec des `<img srcset>`, et vous reposer à la place sur la capacité du serveur ou du <a hreflang="en" href="https://cloudinary.com/blog/client_hints_and_responsive_images_what_changed_in_chrome_67">CDN d’images à sélectionner l’image optimale</a> suivant le contexte. Cela permet de simplifier le HTML et permet aux serveurs d’origine de s’adapter au fil du temps et de déconnecter les couches de contenu et de présentation.
+Les Indications Client, ou <a hreflang="en" href="https://web.dev/user-agent-client-hints/"><span lang="en">Client Hints</span></a> permettent aux créateurs et créatrices de contenus de déplacer le redimensionnement des images vers la négociation de contenu HTTP. De cette manière, vous n’avez pas besoin de surcharger votre balisage HTML avec des `<img srcset>`, et vous reposer à la place sur la capacité du serveur ou du <a hreflang="en" href="https://cloudinary.com/blog/client_hints_and_responsive_images_what_changed_in_chrome_67">CDN d’images à sélectionner l’image optimale</a> suivant le contexte. Cela permet de simplifier le HTML et permet aux serveurs d’origine de s’adapter au fil du temps et de déconnecter les couches de contenu et de présentation.
 
 Pour activer les Indications Client, la page web doit envoyer un signal au navigateur en utilisant soit un en-tête HTTP supplémentaire `Accept-CH: DPR, Width, Viewport-Width` _ou_ en ajoutant dans le balisage HTML `<meta http-equiv="Accept-CH" content="DPR, Width, Viewport-Width">`. Le choix de l’une ou l’autre technique dépend de l’équipe qui la met en œuvre et les deux sont proposées pour des raisons de commodité.
 
@@ -359,6 +359,7 @@ Les Indications Client liés au réseau, `downlink`, `rtt`, et `ect`, ne sont di
 
 L’amélioration des performances des pages web peut être partiellement caractérisée comme un jeu de miroirs&nbsp;: sans les supprimer, on décale les éléments les plus lents en dehors de la zone d’usage de l’utilisateur. Par exemple, le <span lang="en">lazy loading</span> d’images est une de ces illusions où les images et les contenus médias ne sont chargés que lorsque l’utilisateur fait défiler la page. Cela améliore les performances perçues, même sur des réseaux lents, et évite à l’utilisateur de télécharger des octets qui ne sont pas visualisés autrement.
 
+<!-- markdownlint-disable-next-line MD051 -->
 Plus tôt, dans la <a hreflang="en" href="#fig-5">Figure 5</a>, nous avons montré que le volume de contenu d’image au 75e percentile est bien plus important que ce qui pourrait théoriquement être affiché sur un seul écran de bureau ou de téléphone portable. L’audit <span lang="en">Lighthouse</span> concernant les <a hreflang="en" href="https://developers.google.com/web/tools/lighthouse/audits/offscreen-images">images hors champs</a> confirme ce soupçon. La page web médiane contient 27&nbsp;% d’images situées nettement sous la partie visible de la page. Ce pourcentage passe à 84&nbsp;% au 90e percentile.
 
 {{ figure_markup(

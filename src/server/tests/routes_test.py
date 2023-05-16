@@ -151,6 +151,14 @@ def test_render_en_2019_good_chapter_slash(client):
     assert_route(client, "/en/2019/css/", 302, "/en/2019/css")
 
 
+def test_redirect_untranslated_chapter(client):
+    assert_route(client, "/nl/2019/http", 302, "/en/2019/http")
+
+
+def test_redirect_untranslated_chapter_qith_queryparam(client):
+    assert_route(client, "/nl/2019/http?queryparam", 302, "/en/2019/http?queryparam")
+
+
 def test_render_robots(client):
     assert_route(client, "/robots.txt", 200)
 
@@ -187,6 +195,15 @@ def test_render_old_image_dir_redirect(client):
         "/static/images/2019/02_CSS/random.png",
         301,
         "/static/images/2019/css/random.png",
+    )
+
+
+def test_render_pdf_redirect(client):
+    assert_route(
+        client,
+        "/static/pdfs/web_almanac_2019_en_cover_A5.pdf",
+        301,
+        "https://cdn.httparchive.org/almanac/ebooks/web_almanac_2019_en_cover_A5.pdf",
     )
 
 
@@ -232,3 +249,13 @@ def test_test_webvitals_js(client):
 def test_test_webvitals_js_versioned(client):
     response = client.get("/static/js/web-vitals.js?v=1234")
     assert response.status_code == 200
+
+
+def test_embed(client):
+    response = client.get("/en/2022/embeds/structured-data-sankey")
+    assert response.status_code == 200
+
+
+def test_report_to_header(client):
+    response = client.get("/en/2022/")
+    assert response.headers["Report-To"].startswith("{")

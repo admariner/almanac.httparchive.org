@@ -22,7 +22,7 @@ featured_stat_label_3: Mobile websites failing Core Web Vitals checks
 
 ## Introduction
 
-SEO (Search Engine Optimization) is the practice of optimizing a website or webpage to increase the quantity and quality of its traffic from a search engine's organic results.
+SEO (Search Engine Optimization) is the practice of optimizing a website or web page to increase the quantity and quality of its traffic from a search engine's organic results.
 
 SEO is more popular than ever and has seen huge growth over the last couple years as companies sought new ways to reach customers. SEO's popularity has far outpaced other digital channels.
 
@@ -732,7 +732,7 @@ The most popular hreflang attribute is `"en"` (English version). 4.75% of mobile
 
 For Bing, [`hreflang` is a "far weaker signal" than the `content-language` header](https://twitter.com/facan/status/1304120691172601856).
 
-As with many other SEO parameters, [`content-language`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language) has multiple implementation methods including:
+As with many other SEO parameters, [`content-language`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Language) has multiple implementation methods including:
 
 1. HTTP server response
 2. HTML tag

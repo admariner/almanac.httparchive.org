@@ -8,7 +8,7 @@ analysts: [rviscomi]
 editors: [shantsis]
 translators: [ksakae1216]
 meyerweb_bio: Eric A. Meyerは、burger flipper、hardware jockey、大学のウェブマスター、初期のブロガー、オリジナルの<a hreflang="en" href="https://archive.webstandards.org/css/members.html">CSS Samurai</a>の一人、[CSS Working Group](https://en.wikipedia.org/wiki/CSS_Working_group)のメンバー、コンサルタントとトレーナー、そして[Netscape](https://ja.wikipedia.org/wiki/%E3%83%8D%E3%83%83%E3%83%88%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%97%E3%82%B3%E3%83%9F%E3%83%A5%E3%83%8B%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%BA)のスタンダード・エバンジェリストとして活躍してきました。現在は、<a hreflang="en" href="http://igalia.com/">Igalia</a>のDeveloper Advocateであり、<a hreflang="en" href="https://aneventapart.com/">An Event Apart</a>の共同創始者である<a hreflang="en" href="http://zeldman.com/">Jeffrey Zeldman</a>と共に活動しています。中でもEricは、<cite><a hreflang="en" href="https://abookapart.com/products/design-for-real-life">Design For Real Life</a></cite>を<a hreflang="en" href="https://sarawb.com">Sara Wachter-Boettcher</a>と<a hreflang="en" href="https://abookapart.com/">A Book Apart</a>のために共同執筆し、<cite><a hreflang="en" href="http://meyerweb.com/eric/books/css-tdg/">CSS&colon; The Definitive Guide</a></cite>と、<a hreflang="en" href="http://standardista.com/">Estelle Weyl</a>が<a hreflang="en" href="https://oreilly.com/">O'Reilly</a> また、初の公式な<a hreflang="en" href="http://w3.org/">W3C</a>テストスイートを作成し、<a hreflang="en" href="http://microformats.org/">microformats</a>の作成を支援しました。
-GeekBoySupreme_bio: Shuvamはデザイナーであり、<a hreflang="en" href="https://www.behance.net/shuvammanna">doodler</a>、<a hreflang="en" href="https://distortedaura.wordpress.com/">writer</a>、<a hreflang="en" href="https://www.instagram.com/the_distorted_aura/">shutterbug</a>であり、<a hreflang="en" href="https://github.com/GeekBoySupreme">software tinker</a>でもあります。現在は、<a hreflang="en" href="https://deepsource.io">DeepSource</a>でデザインをしたり、Indie-Hackingで、<a hreflang="en" href="https://doneth.space">Doneth</a>のようなプロジェクトに取り組み、コンピュータが人間とどのように相互作用するかの荒削りな部分を探求しています。
+GeekBoySupreme_bio: Shuvamはデザイナーであり、<a hreflang="en" href="https://www.behance.net/shuvammanna">doodler</a>、<a hreflang="en" href="https://distortedaura.wordpress.com/">writer</a>、<a hreflang="en" href="https://www.instagram.com/the_distorted_aura/">shutterbug</a>であり、<a hreflang="en" href="https://github.com/GeekBoySupreme">software tinker</a>でもあります。現在は、<a hreflang="en" href="https://deepsource.io">DeepSource</a>でデザインをしたり、Indie-Hackingで、Donethのようなプロジェクトに取り組み、コンピュータが人間とどのように相互作用するかの荒削りな部分を探求しています。
 results: https://docs.google.com/spreadsheets/d/12vQIA0xsC5Jr3J9Sh03AcAvgFjMAmP1xSS6Tjai9LF0/
 featured_quote: 2021年版Web Almanacでは、私たちが必要だと思っているものと、実際に制作現場で目にするものとでは、CSSの使い方がどのように違うのかをより深く理解することができます。
 featured_stat_1: 71%
@@ -184,7 +184,7 @@ CSSには、クラス、ID、そしてスタイルの重複を避けるために
 
 2020年と同様に、ユーザーアクション擬似クラスの `:hover`, `:focus`, `:active` がトップ3を占め、いずれも全ページの3分の2以上に登場しています。構造的な擬似クラスも数多く登場しましたが、もっとも興味深い変化は、否定の擬似クラスである `:not()` は `:visited` よりも人気を博し、ページの50％のシェアを獲得したことです。
 
-今年、とくにチェックしたのは、[`:focus-visible`という、フォーカスされた要素をユーザーの期待に合うようにスタイルする方法](https://developer.mozilla.org/ja/docs/Web/CSS/:focus-visible)の使用です。この機能は、2020年にChromiumへ搭載され、2021年1月にはFirefoxに搭載され、（発表時点では）Safari 15で実験的なフラグを立てて利用できるようになっています。最近の導入状況を反映してか、分析したページの1％未満にしか登場しませんでした。この数字が今後数年間で変化するかどうかが注目されます。
+今年、とくにチェックしたのは、[`:focus-visible`という、フォーカスされた要素をユーザーの期待に合うようにスタイルする方法](https://developer.mozilla.org/docs/Web/CSS/:focus-visible)の使用です。この機能は、2020年にChromiumへ搭載され、2021年1月にはFirefoxに搭載され、（発表時点では）Safari 15で実験的なフラグを立てて利用できるようになっています。最近の導入状況を反映してか、分析したページの1％未満にしか登場しませんでした。この数字が今後数年間で変化するかどうかが注目されます。
 
 {{ figure_markup(
   image="most-popular-unprefixed-pseudo-elements.png",
@@ -981,7 +981,7 @@ W3Cのオリジナルボックスモデルの原則は、引き続き否定さ�
   sql_file="transition_properties.sql"
 ) }}
 
-これらのトランジションの中で、もっとも一般的なアプリケーションは、`all`キーワードを使ったすべての[animatable property](https://developer.mozilla.org/ja/docs/Web/CSS/CSS_animated_properties)への適用であり、分析されたページの46％で発生しています（明示的であれデフォルトであれ）。これに続くのは`opacity`で、トランジションを含むすべてのページの42％です。
+これらのトランジションの中で、もっとも一般的なアプリケーションは、`all`キーワードを使ったすべての[animatable property](https://developer.mozilla.org/docs/Web/CSS/CSS_animated_properties)への適用であり、分析されたページの46％で発生しています（明示的であれデフォルトであれ）。これに続くのは`opacity`で、トランジションを含むすべてのページの42％です。
 
 {{ figure_markup(
   image="distribution-of-transition-durations.png",
@@ -1053,7 +1053,7 @@ FlexboxやGridなどの組み込みツールの登場により、ウェブを閲
 
 顕著な変化が見られたのは、`prefers-reduced-motion`クエリのランキングでした。このクエリは、2020年には24％のシェアで7位でしたが、今年は32％のシェアで5位に上がり、`orientation`をわずかに上回っています。
 
-また、最下位には新参者が登場しました。昨年19位だった[`pointer`](https://developer.mozilla.org/ja/docs/Web/CSS/@media/pointer)は、ディスプレイデバイスの主な入力機構がマウスなどのポインティングデバイスであるかどうかをチェックするクエリで、21位に転落してしまいました。一方、[`hover` メディア機能](https://developer.mozilla.org/ja/docs/Web/CSS/@media/hover)は、20位にランクインしました。`hover` は、ディスプレイデバイスの主要な入力メカニズムが、ページ上の要素にホバー状態を引き起こすことができるかどうかをテストするために使用されます。
+また、最下位には新参者が登場しました。昨年19位だった[`pointer`](https://developer.mozilla.org/docs/Web/CSS/@media/pointer)は、ディスプレイデバイスの主な入力機構がマウスなどのポインティングデバイスであるかどうかをチェックするクエリで、21位に転落してしまいました。一方、[`hover` メディア機能](https://developer.mozilla.org/docs/Web/CSS/@media/hover)は、20位にランクインしました。`hover` は、ディスプレイデバイスの主要な入力メカニズムが、ページ上の要素にホバー状態を引き起こすことができるかどうかをテストするために使用されます。
 
 どちらのクエリも目的は似ていて、（簡単に言うと）ページを表示するために使用されているデバイスがマウス駆動であるかどうかを調べることです。モバイルファーストのデザイン哲学と組み合わせると、デスクトップのスタイルがモバイルのデフォルトスタイルを上書きするように追加され、`pointer`や`hover`のようなクエリがどのように役立つかがわかります。どちらかが優位に立つかどうかを判断するのはまだ早いですが、今年のトレンドは`hover`に傾いています。
 
@@ -1433,7 +1433,7 @@ Flexboxのロングハンドとショートハンドのプロパティの中に�
   sql_file="meta_unknown_properties.sql"
 ) }}
 
-私たちがチェックしたいことのひとつに、構文的には有効だが、実際には存在しないプロパティを使用している宣言の存在があります。これは、ベンダー接頭辞付きのプロパティは数えませんが、不正なベンダー接頭辞付きのプロパティは含みます。実際、もっとも広く見られた存在しないプロパティは`webkit-transition`（適切なベンダープレフィックスに必要な先頭の`-`がない）で、存在しないプロパティを含むすべてのページの14％に見られました。本質的に結びついていたのは `font-smoothing` で、これは `-webkit-font-smoothing` の接頭辞なしのバージョンで、実際には存在しませんし、[すぐに存在する可能性もありません](https://developer.mozilla.org/ja/docs/Web/CSS/font-smooth) 。
+私たちがチェックしたいことのひとつに、構文的には有効だが、実際には存在しないプロパティを使用している宣言の存在があります。これは、ベンダー接頭辞付きのプロパティは数えませんが、不正なベンダー接頭辞付きのプロパティは含みます。実際、もっとも広く見られた存在しないプロパティは`webkit-transition`（適切なベンダープレフィックスに必要な先頭の`-`がない）で、存在しないプロパティを含むすべてのページの14％に見られました。本質的に結びついていたのは `font-smoothing` で、これは `-webkit-font-smoothing` の接頭辞なしのバージョンで、実際には存在しませんし、[すぐに存在する可能性もありません](https://developer.mozilla.org/docs/Web/CSS/font-smooth) 。
 
 #### ショートハンドの前にロングハンド
 

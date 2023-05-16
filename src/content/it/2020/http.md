@@ -246,7 +246,7 @@ Come è cambiata l'adozione di HTTP/2 nell'ultimo anno per ogni server? La Figur
   )
 }}
 
-Una raccomandazione a lungo termine per migliorare le prestazioni del sito Web è stata quella di utilizzare un CDN. Il vantaggio è una riduzione della latenza sia servendo il contenuto che terminando le connessioni più vicino all'utente finale. Ciò aiuta a mitigare la rapida evoluzione nella distribuzione dei protocolli e le ulteriori complessità nell'ottimizzazione di server e sistemi operativi (vedere la sezione [Prioritizzazione](#prioritization) per maggiori dettagli). Per utilizzare i nuovi protocolli in modo efficace, l'utilizzo di un CDN può essere considerato l'approccio consigliato.
+Una raccomandazione a lungo termine per migliorare le prestazioni del sito Web è stata quella di utilizzare un CDN. Il vantaggio è una riduzione della latenza sia servendo il contenuto che terminando le connessioni più vicino all'utente finale. Ciò aiuta a mitigare la rapida evoluzione nella distribuzione dei protocolli e le ulteriori complessità nell'ottimizzazione di server e sistemi operativi (vedere la sezione [Prioritizzazione](#prioritizzazione) per maggiori dettagli). Per utilizzare i nuovi protocolli in modo efficace, l'utilizzo di un CDN può essere considerato l'approccio consigliato.
 
 I CDN possono essere classificati in due ampie categorie: quelli che servono la home page e/o i asset subdomain e quelli che vengono utilizzati principalmente per fornire contenuti di terze parti. Esempi della prima categoria sono i CDN generici più grandi (come Cloudflare, Akamai o Fastly) e quelli più specifici (come WordPress o Netlify). Osservando la differenza nei tassi di adozione di HTTP/2 per le home page servite con o senza CDN, vediamo:
 
@@ -309,7 +309,7 @@ Misurare l'impatto delle prestazioni di un protocollo è difficile con l'attuale
 
 ### Ridurre le connessioni
 
-Come discusso [in precedenza](#http10-to-http2), HTTP/1.1 consente solo una singola richiesta alla volta su una connessione TCP. La maggior parte dei browser aggira questo problema consentendo sei connessioni parallele per host. Il principale miglioramento con HTTP/2 è che più richieste possono essere multiplexate su una singola connessione TCP. Ciò dovrebbe ridurre il numero totale di connessioni e il tempo e le risorse associate necessarie per caricare una pagina.
+Come discusso [in precedenza](#da-http10-a-http2), HTTP/1.1 consente solo una singola richiesta alla volta su una connessione TCP. La maggior parte dei browser aggira questo problema consentendo sei connessioni parallele per host. Il principale miglioramento con HTTP/2 è che più richieste possono essere multiplexate su una singola connessione TCP. Ciò dovrebbe ridurre il numero totale di connessioni e il tempo e le risorse associate necessarie per caricare una pagina.
 
 {{ figure_markup(
   image="http2-total-number-of-connections-per-page.png",
@@ -346,7 +346,7 @@ Questa <a hreflang="en" href="https://github.com/andydavies/http2-prioritization
     <thead>
       <tr>
         <th>CDN</th>
-        <th>Assegna la priorità <br />correttamente</th>
+        <th>Assegna la priorità <br>correttamente</th>
         <th>Desktop</th>
         <th>Mobile</th>
       </tr>
@@ -595,7 +595,7 @@ Questo non funziona se i protocolli non sono sulla stessa porta, utilizza un pro
 
 L'intestazione Upgrade fa parte di HTTP da molto tempo. In HTTP/1.x, `Upgrade` consente a un client di effettuare una richiesta utilizzando un protocollo, ma indica il suo supporto per un altro protocollo (come HTTP/2). Se il server supporta anche il protocollo offerto, risponde con uno stato 101 (`Switching Protocols`) e procede a rispondere alla richiesta nel nuovo protocollo. In caso contrario, il server risponde alla richiesta in HTTP/1.x. I server possono pubblicizzare il loro supporto di un protocollo diverso usando un'intestazione `Upgrade` su una risposta.
 
-L'applicazione più comune di `Upgrade` è [WebSockets](https://developer.mozilla.org/it/docs/Web/API/WebSockets_API). HTTP/2 definisce anche un percorso `Upgrade`, da usare con la sua modalità di testo non crittografato. Tuttavia, non è disponibile alcun supporto per questa funzionalità nei browser web. Pertanto, non sorprende che meno del 3% delle richieste HTTP/1.1 in chiaro nel nostro set di dati abbia ricevuto un'intestazione `Upgrade` nella risposta. Un numero molto piccolo di richieste che utilizzano TLS (0.0011% di HTTP/2, 0.064% di HTTP/1.1) ha ricevuto anche le intestazioni `Upgrade` in risposta; questi sono probabilmente server HTTP/1.1 in chiaro dietro intermediari che parlano HTTP/2 e/o terminano TLS, ma non rimuovono correttamente le intestazioni `Upgrade`.
+L'applicazione più comune di `Upgrade` è [WebSockets](https://developer.mozilla.org/docs/Web/API/WebSockets_API). HTTP/2 definisce anche un percorso `Upgrade`, da usare con la sua modalità di testo non crittografato. Tuttavia, non è disponibile alcun supporto per questa funzionalità nei browser web. Pertanto, non sorprende che meno del 3% delle richieste HTTP/1.1 in chiaro nel nostro set di dati abbia ricevuto un'intestazione `Upgrade` nella risposta. Un numero molto piccolo di richieste che utilizzano TLS (0.0011% di HTTP/2, 0.064% di HTTP/1.1) ha ricevuto anche le intestazioni `Upgrade` in risposta; questi sono probabilmente server HTTP/1.1 in chiaro dietro intermediari che parlano HTTP/2 e/o terminano TLS, ma non rimuovono correttamente le intestazioni `Upgrade`.
 
 ### Alternative Services
 
@@ -634,9 +634,9 @@ Ora potresti chiederti: se non tutti usano già HTTP/2, perché avremmo bisogno 
 
 I tentativi passati di implementare nuovi protocolli di trasporto su Internet si sono rivelati difficili, ad esempio [Stream Control Transmission Protocol](https://it.wikipedia.org/wiki/Stream_Control_Transmission_Protocol) (SCTP). QUIC è un nuovo protocollo di trasporto che viene eseguito su UDP. Fornisce funzionalità simili a TCP, come la consegna in ordine affidabile e il controllo della congestione per prevenire l'inondazione della rete.
 
-Come discusso nella sezione [Da HTTP/1.0 a HTTP/2](#http10-to-http2), HTTP/2 _multiplex_ più flussi diversi su una connessione. Il TCP stesso è tristemente inconsapevole di questo fatto, portando a inefficienze o un impatto sulle prestazioni quando si verificano perdite di pacchetti o ritardi. Maggiori dettagli su questo problema, noto come _head-of-line blocking_ (blocco HOL), <a hreflang="en" href="https://github.com/rmarx/holblocking-blogpost">possono essere trovati qui</a>.
+Come discusso nella sezione [Da HTTP/1.0 a HTTP/2](#da-http10-a-http2), HTTP/2 _multiplex_ più flussi diversi su una connessione. Il TCP stesso è tristemente inconsapevole di questo fatto, portando a inefficienze o un impatto sulle prestazioni quando si verificano perdite di pacchetti o ritardi. Maggiori dettagli su questo problema, noto come _head-of-line blocking_ (blocco HOL), <a hreflang="en" href="https://github.com/rmarx/holblocking-blogpost">possono essere trovati qui</a>.
 
-QUIC risolve il problema del blocco HOL portando i flussi HTTP/2 nel livello di trasporto ed eseguendo il rilevamento e la ritrasmissione della perdita per flusso. Quindi abbiamo semplicemente messo HTTP/2 su QUIC, giusto? Bene, abbiamo [già menzionato](#reducing-connections) alcune delle difficoltà derivanti dal controllo del flusso in TCP e HTTP/2. L'esecuzione di due sistemi di streaming separati e concorrenti l'uno sull'altro sarebbe un problema aggiuntivo. Inoltre, poiché i flussi QUIC sono indipendenti, interferirebbe con i severi requisiti di ordinazione richiesti da HTTP/2 per molti dei suoi sistemi.
+QUIC risolve il problema del blocco HOL portando i flussi HTTP/2 nel livello di trasporto ed eseguendo il rilevamento e la ritrasmissione della perdita per flusso. Quindi abbiamo semplicemente messo HTTP/2 su QUIC, giusto? Bene, abbiamo [già menzionato](#ridurre-le-connessioni) alcune delle difficoltà derivanti dal controllo del flusso in TCP e HTTP/2. L'esecuzione di due sistemi di streaming separati e concorrenti l'uno sull'altro sarebbe un problema aggiuntivo. Inoltre, poiché i flussi QUIC sono indipendenti, interferirebbe con i severi requisiti di ordinazione richiesti da HTTP/2 per molti dei suoi sistemi.
 
 Alla fine, è stato ritenuto più facile definire una nuova versione HTTP che utilizzi direttamente QUIC e quindi è nato HTTP/3. Le sue funzionalità di alto livello sono molto simili a quelle che conosciamo da HTTP/2, ma i meccanismi di implementazione interna sono abbastanza diversi. La compressione dell'intestazione HPACK viene sostituita con <a hreflang="en" href="https://tools.ietf.org/html/draft-ietf-quic-qpack-19">QPACK</a>, che consente <a hreflang="en" href="https://blog.litespeedtech.com/tag/quic-header-compression-design-team/">la regolazione manuale</a> dell'efficienza di compressione rispetto al compromesso del rischio del blocco HOL e il sistema di prioritizzazione viene <a hreflang="en" href="https://blog.cloudflare.com/adopting-a-new-approach-to-http-prioritization/">sostituito da uno più semplice</a>. Quest'ultimo potrebbe anche essere trasferito su HTTP/2, forse aiutando a risolvere i problemi di prioritizzazione discussi in precedenza in questo articolo. HTTP/3 continua a fornire un meccanismo push del server, ma Chrome, ad esempio, non lo implementa.
 

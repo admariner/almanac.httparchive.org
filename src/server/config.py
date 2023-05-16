@@ -8,7 +8,7 @@ TEMPLATES_DIR = ROOT_DIR + "/templates"
 STATIC_DIR = ROOT_DIR + "/static"
 
 SUPPORTED_YEARS = []
-DEFAULT_YEAR = "2021"
+DEFAULT_YEAR = "2022"
 
 DEFAULT_AVATAR_FOLDER_PATH = "/static/images/avatars/"
 AVATAR_SIZE = 200
@@ -19,6 +19,7 @@ SUPPORTED_LANGUAGES = {}
 
 config_json = {}
 timestamps_json = {}
+contributors = {}
 
 
 def get_config(year):
@@ -72,6 +73,7 @@ def update_config():
     global SUPPORTED_LANGUAGES
     global config_json
     global timestamps_json
+    global contributors
 
     config_files = []
 
@@ -81,6 +83,10 @@ def update_config():
                 config_filename = "config/%s" % file
                 with open(config_filename, "r") as config_file:
                     timestamps_json = json.load(config_file)
+            elif file == "contributors.json":
+                config_filename = "config/%s" % file
+                with open(config_filename, "r") as config_file:
+                    contributors = json.load(config_file)
             elif ".json" in file:
                 config_files.append(file[0:4])
 
@@ -94,6 +100,14 @@ def update_config():
                 SUPPORTED_YEARS.append(year)
                 SUPPORTED_LANGUAGES.update({year: get_languages(json_config)})
                 SUPPORTED_CHAPTERS.update({year: set(get_chapters(json_config))})
+
+                # Add the contributors details that contributed to this year
+                # for ease of look up later
+                json_config["contributors"] = {}
+                for contributor_id, contributor in contributors.items():
+                    if (year in contributor["teams"]):
+                        json_config["contributors"][contributor_id] = {**contributor}
+                        json_config["contributors"][contributor_id]["teams"] = contributor["teams"][year]
 
                 for contributor_id, contributor in json_config["contributors"].items():
                     if "avatar_url" not in contributor:

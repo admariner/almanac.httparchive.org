@@ -83,13 +83,20 @@ Notre mission est de combiner les statistiques brutes et les tendances de HTTP A
 {% block reviewed_and_analyzed_by_after %}{% endblock %}
 {% block analysis_and_editing_by_after %}{% endblock %}
 
+{% block date_published %}Date de publication : {% endblock %}
+{% block date_updated %}Date de mise à jour : {% endblock %}
+
 {% block unedited %}[non corrigé]{% endblock %}
 
 {% block author %}Auteur·ice{% endblock %}
 {% block authors %}Auteur·ice·s{% endblock %}
 
-{% block reactions %}Réactions{% endblock %}
+{% block reaction %}réaction{% endblock %}
+{% block reactions %}réactions{% endblock %}
+{% block reactionsTitle %}Réactions{% endblock %}
+{% block reactionsAlt %}{% endblock %}
 {% block source %}Voir la source{% endblock %}
+{% block share %}Partager{% endblock %}
 
 {% block like %}j’aime{% endblock %}
 {% block repost %}républication{% endblock %}
@@ -117,7 +124,7 @@ Notre mission est de combiner les statistiques brutes et les tendances de HTTP A
 {% block rss_feed %}RSS Feed{% endblock %}
 
 {% block featured_chapter %}Focus sur le chapitre…{% endblock %}
-{% block featured_chapter_last_year %}Focus sur le chapitre<br />du Web Almanac {{ year|int-1 }}{% endblock %}
+{% block featured_chapter_last_year %}Focus sur le chapitre<br>du Web Almanac {{ year|int-1 }}{% endblock %}
 
 {# Check if read_chapter already defined in child template as macros can't be overridden #}
 {% if not read_chapter %}
@@ -188,7 +195,9 @@ Sauf indication contraire, les statistiques des {{ supported_chapters | length }
     "capabilities": "Capacités",
     "jamstack": "Jamstack",
     "webassembly": "WebAssembly",
-    "structured-data": "Données structurées"
+    "structured-data": "Structured Data",
+    "sustainability": "Durabilité",
+    "interop": "Interopérabilité"
   }
 %}
 {% if (year == "2019" or year == "2020") %}
